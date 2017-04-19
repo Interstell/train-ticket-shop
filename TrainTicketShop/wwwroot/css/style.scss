@@ -1,0 +1,20 @@
+body {
+  padding-top: 5rem;
+}
+
+.search-box{
+  padding: 30px 10px;
+  @media (min-width: 576px) {
+    .reverse-btn{
+      margin: 10px 0;
+    }
+  }
+  .search-btn{
+    margin-top:20px;
+  }
+  .datepicker{
+    margin-top: 20px;
+    padding: 0;
+  }
+
+}
