@@ -1,33 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
-using System.Collections.Generic;
 using Newtonsoft.Json;
+using TrainTicketShop.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace TrainTicketShop.Controllers.REST.SearchHints {
     [Route("api/search/hints")]
     public class SearchHintsController : Controller {
-        private HttpClient _httpClient;
+        private SearchHintsService _searchHintsService;
 
-        public SearchHintsController(HttpClient httpClient) {
-            _httpClient = httpClient;
+        public SearchHintsController(SearchHintsService searchHintsService) {
+            _searchHintsService = searchHintsService;
         }
 
         [HttpGet]
         public JsonResult Get([FromQuery] string input) {
-            return new JsonResult(GetHintsFromWeb(input));
+            return new JsonResult(JsonConvert.DeserializeObject(_searchHintsService.GetHints(input)));
         }
 
-        private object GetHintsFromWeb(string input) {
-            var body = new FormUrlEncodedContent(new[]{
-                    new KeyValuePair<string, string>("broker", "PbUa" ),
-                    new KeyValuePair<string, string>("lang", "RU"),
-                    new KeyValuePair<string, string>("prefix", input)
-                });
-            var result = _httpClient.PostAsync("https://bilet.privatbank.ua/sm/train/stations.json", body).Result;
-            return JsonConvert.DeserializeObject(result.Content.ReadAsStringAsync().Result);
-        }
+        
 
         /*// GET: api/values
         [HttpGet]

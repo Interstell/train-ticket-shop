@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Services\" />
     <Folder Include="ViewComponents\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
@@ -30,6 +29,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="1.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+    <PackageReference Include="Redis-64" Version="3.0.503" />
+    <PackageReference Include="StackExchange.Redis" Version="1.2.1" />
   </ItemGroup>
 
 </Project>

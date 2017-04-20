@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +9,8 @@ using TrainTicketShop.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Net.Http;
+using TrainTicketShop.Services;
+using StackExchange.Redis;
 
 namespace TrainTicketShop {
     public class Startup {
@@ -39,6 +37,10 @@ namespace TrainTicketShop {
             services.AddSingleton(new HttpClient(new HttpClientHandler {
                 UseProxy = false
             }));
+            services.AddSingleton<SearchHintsService>();
+            services.AddSingleton(ConnectionMultiplexer.Connect(Configuration.GetConnectionString("Redis")));
+            services.AddSingleton<CacheService>();
+            services.AddSingleton<SearchHintsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

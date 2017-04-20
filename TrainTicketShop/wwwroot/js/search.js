@@ -5,19 +5,21 @@ $(document).ready(function () {
         orientation: "bottom right",
         startDate: moment().format('DD.MM.YYYY')
     });
-    $('.search-city-input').on('input', function(element) {
+    $('.search-city-input').on('input', function(event) {
         let input = $(this).val();
         //todo clean autocompletion on backspace
         if (input.length > 1) {
             $.get('/api/search/hints?input=' + ($(this).val()), function(data){
                 let hints = [];
-                for (let station of data.stations) {
-                    hints.push(
-                        `${station.name} (${data.transportGroups.filter(group => group.id == station.transportGroupId)[0].name})`
-                    );
+                if (data.stations && data.stations.length) {
+                    for (let station of data.stations) {
+                        hints.push(
+                            `${station.name} (${data.transportGroups.filter(group => group.id == station.transportGroupId)[0].name})`
+                        );
+                    }
                 }
                 console.log(hints);
-                $(element.target).autocomplete({
+                $(event.target).autocomplete({
                     source: hints.slice(0,9),
                     delay: 0,
                     minLength: 1,
