@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Routing;
 using TrainTicketShop.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Net.Http;
 
 namespace TrainTicketShop {
     public class Startup {
@@ -35,6 +36,9 @@ namespace TrainTicketShop {
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<TrainTicketShopDbContext>();
             services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddSingleton(new HttpClient(new HttpClientHandler {
+                UseProxy = false
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
