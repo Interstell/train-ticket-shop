@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Net.Http;
 using TrainTicketShop.Services;
 using StackExchange.Redis;
+using TrainTicketShop.Services.SessionId;
 
 namespace TrainTicketShop {
     public class Startup {
@@ -33,21 +34,25 @@ namespace TrainTicketShop {
                 options.UseSqlServer(Configuration.GetConnectionString("LocalDB")));
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<TrainTicketShopDbContext>();
+
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddSingleton(new HttpClient(new HttpClientHandler {
                 UseProxy = false
             }));
-            services.AddSingleton<SearchHintsService>();
+            services.AddScoped<SearchHintsService>();
             services.AddSingleton(ConnectionMultiplexer.Connect(Configuration.GetConnectionString("Redis")));
             services.AddSingleton<CacheService>();
-            services.AddSingleton<SearchHintsService>();
+
+            services.AddSingleton<PbSessionIdService>();
+            services.AddScoped<SearchTrainService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,
                             IHostingEnvironment env,
                             ILoggerFactory loggerFactory) {
-            loggerFactory.AddConsole();
+            loggerFactory
+                .AddConsole();
 
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();

@@ -23,7 +23,7 @@ namespace TrainTicketShop.Services
 
         public void Set(string key, string value) {
             _db.StringSetAsync(key, value);
-            //todo add BGSAVE call or add this call on Cron
+            //todo add BGSAVE call or add this call on Cron https://www.hangfire.io/
         }
 
     }
