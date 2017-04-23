@@ -1,7 +1,7 @@
 $text-gray: #AEAEAE;
 
 body {
-  padding-top: 5rem;
+    padding-top: 5rem;
 }
 
 .block-vertical-align {
@@ -10,33 +10,45 @@ body {
     transform: translateY(-50%);
 }
 
-.search-box{
-  padding: 30px 10px;
-  @media (min-width: 576px) {
-    .reverse-btn{
-      margin: 10px 0;
+.search-box {
+    padding: 30px 10px;
+
+    @media (min-width: 576px) {
+        .reverse-btn {
+            margin: 10px 0;
+        }
     }
-  }
-  .search-btn{
-    margin-top:20px;
-  }
-  .datepicker{
-    margin-top: 20px;
-    padding: 0;
-  }
-  .reverse-block{
-      cursor:pointer;
-  }
+
+    .search-btn {
+        margin-top: 20px;
+    }
+
+    .datepicker {
+        margin-top: 20px;
+        padding: 0;
+    }
+
+    .reverse-block {
+        cursor: pointer;
+    }
 }
 
 .train-block {
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(243,243,243,0.7);
+    }
+
     .train-basic-info {
         @extend .block-vertical-align;
-        img{
+
+        img {
             height: 100px;
-            width:100px;
+            width: 100px;
             margin-bottom: 10px;
         }
+
         .train-number {
             margin-bottom: 5px;
 
@@ -45,6 +57,18 @@ body {
                 background-color: #BAC3CC;
                 color: #fff;
                 padding: 3px;
+            }
+        }
+
+        .train-type {
+            margin-bottom: 5px;
+
+            span {
+                border-radius: 5px;
+                font-size: 13px;
+                color: #fff;
+                padding: 3px;
+                background-color: lighten(#BAC3CC, 10%);
             }
         }
     }
@@ -83,16 +107,23 @@ body {
     }
 
     .train-seats-info {
-        .table{
+        .table {
             @extend .block-vertical-align;
-            th{
+
+            th {
                 vertical-align: top;
                 color: darken($text-gray, 30%);
+            }
+
+            tr {
+                &:hover {
+                    background-color: transparent;
+                }
             }
         }
     }
 }
 
-.train-divider{
-    border-top: 2px solid lighten($text-gray, 10%) ;
+.train-divider {
+    border-top: 2px solid lighten($text-gray, 10%);
 }

@@ -8,8 +8,8 @@ namespace TrainTicketShop.Entities
 {
     public class TrainsSearchResult
     {
-        List<TrainBriefly> Trains;
-        List<StationBriefly> Stations;
+        public List<TrainBriefly> Trains;
+        public List<StationBriefly> Stations;
 
         public TrainsSearchResult(string json) {
             dynamic results = JsonConvert.DeserializeObject<dynamic>(json);
@@ -52,7 +52,8 @@ namespace TrainTicketShop.Entities
                                 Id = rawCarType.id,
                                 Name = rawCarType.name,
                                 FreeSeats = rawCarType.freeSeats,
-                                EstimatedTax = rawCarType.estimatedTax
+                                EstimatedTax = rawCarType.estimatedTax,
+                                NoTaxData = Double.Parse((string)(rawCarType.estimatedTax), System.Globalization.CultureInfo.InvariantCulture) == 0
                             }
                         );
                 }
@@ -100,6 +101,7 @@ namespace TrainTicketShop.Entities
         public string Name { get; set; }
         public int FreeSeats { get; set; }
         public string EstimatedTax { get; set; }
+        public bool NoTaxData { get; set; }
     }
     public class StationBriefly : Description { }
 }

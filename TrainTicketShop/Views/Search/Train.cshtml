@@ -1,72 +1,82 @@
-﻿@{ 
+﻿@model TrainsSearchResult
+
+@{ 
     ViewBag.Title = "Выбор поезда";
 }
 
 <div class="container">
-    <div class="train-block w-100">
-        <div class="row">
-            <div class="col-md-2 col-sm-6">
-                <div class="train-basic-info text-center">
-                    <img src="/img/train_sm.png" />
-                    <div class="train-number"><span>179К</span></div>
-                    <div>
-                        Киев Пассажирский
+    @foreach (var train in Model.Trains) {
+        <div class="train-block w-100">
+            <div class="invisible train-hash">@train.Hash</div>
+            <div class="row">
+                <div class="col-md-2 col-sm-6">
+                    <div class="train-basic-info text-center">
+                        <img src="/img/train_sm.png" />
+                        <div class="train-number"><span>@train.Number</span></div>
+                        @if (train.Category.Id == 12) {
+                            <div class="train-type"><span>@train.Category.Name</span></div>
+                        }
+                        <div>
+                            @Model.Stations.Find(st => st.Id == train.DepartureStationId).Name
+                        </div>
+                        <div>
+                            ↓
+                        </div>
+                        <div>
+                            @Model.Stations.Find(st => st.Id == train.ArrivalStationId).Name
+                        </div>
                     </div>
-                    <div>
-                        ↓
+                </div>
+                <div class="train-path-info col-md-4 col-sm-6">
+                    <div class="station-name">@Model.Stations.Find(st => st.Id == train.PassengerDepartureStationId).Name</div>
+                    <div class="departure">
+                        <div class="name">Отправление</div>
+                        @{ var departureDateTime = DateTime.ParseExact(train.PassengerDepartureDate, "yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);}
+                        <div class="time">@departureDateTime.ToString("HH:mm")</div>
+                        <div class="date">@departureDateTime.ToString("dd.MM.yyyy")</div>
                     </div>
-                    <div>
-                        Днепр Главный
+                    <div class="trip">
+                        <div class="name">В пути</div>
+                        @{ var hours = (int)(train.TravelTime / 60);
+                            var minutes = train.TravelTime - hours * 60;}
+                        <div class="time">@hours ч @minutes м</div>
                     </div>
+                    <div class="arrival">
+                        <div class="name">Прибытие</div>
+                        @{ var arrivalDateTime = DateTime.ParseExact(train.PassengerArrivalDate, "yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);}
+                        <div class="time">@arrivalDateTime.ToString("HH:mm")</div>
+                        <div class="date">@arrivalDateTime.ToString("dd.MM.yyyy")</div>
+                    </div>
+                    <div class="station-name">@Model.Stations.Find(st => st.Id == train.PassengerArrivalStationId).Name</div>
                 </div>
-            </div>
-            <div class="train-path-info col-md-4 col-sm-6">
-                <div class="station-name">КИЕВ-ПАССАЖИРСКИЙ</div>
-                <div class="departure">
-                    <div class="name">Отправление</div>
-                    <div class="time">08:36</div>
-                    <div class="date">29.04.2017</div>
+                <div class="train-seats-info col-md-6 col-sm-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Типы вагонов</th>
+                                <th>Свободные места</th>
+                                <th>Цена (грн.)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var carType in train.CarTypes) {
+                                <tr>
+                                    <td>@carType.Name</td>
+                                    <td>@carType.FreeSeats</td>
+                                    @if (!carType.NoTaxData) {
+                                        <td>@carType.EstimatedTax</td>
+                                    }
+                                    else { 
+                                        <td>н/д</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-                <div class="trip">
-                    <div class="name">В пути</div>
-                    <div class="time">9 ч 15 м</div>
-                </div>
-                <div class="arrival">
-                    <div class="name">Прибытие</div>
-                    <div class="time">17:51</div>
-                    <div class="date">29.04.2017</div>
-                </div>
-                <div class="station-name">ДНЕПР ГЛАВНЫЙ</div>
-            </div>
-            <div class="train-seats-info col-md-6 col-sm-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Типы вагонов</th>
-                            <th>Свободные места<br />(нижние/верхние)</th>
-                            <th>Цена (грн.)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>люкс</td>
-                            <td>34/0</td>
-                            <td>852.9</td>
-                        </tr>
-                        <tr>
-                            <td>купейный</td>
-                            <td>128/164</td>
-                            <td>324.81 - 425.75</td>
-                        </tr>
-                        <tr>
-                            <td>плацкарт</td>
-                            <td>0/50</td>
-                            <td>231.59</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
-    </div>
-    <hr class="train-divider" />
+        <hr class="train-divider" />
+    }
+    
 </div>

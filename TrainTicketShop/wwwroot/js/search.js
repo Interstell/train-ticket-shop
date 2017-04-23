@@ -56,4 +56,10 @@ $(document).ready(function () {
         let redirectUrl = `/search/train?from=${fromStationId}&to=${toStationId}&date=${date}`;
         window.location.href = redirectUrl;
     });
+    $('.train-block').click(function (e) {
+        e.preventDefault();
+        let hash = $(this).find('.train-hash').text();
+        let redirectUrl = `/train?hash=${hash}`;
+        window.location.href = redirectUrl;
+    });
 })

@@ -22,12 +22,13 @@ namespace TrainTicketShop.Controllers {
 
         [HttpGet]
         public IActionResult Train([FromQuery]int from, [FromQuery]int to, [FromQuery]string date) {
-            /*string json = _searchTrainService.GetTrainsFromWeb(from, to, date);
-            TrainsSearchResult result = new TrainsSearchResult(json);*/
             /*return new JsonResult(JsonConvert.DeserializeObject(
-                    _searchTrainService.GetTrainsFromWeb(from, to, date)
-                ));*/
-            return View();
+                _searchTrainService.GetTrainsFromWeb(from, to, date)
+            ));*/
+            string json = _searchTrainService.GetTrainsFromWeb(from, to, date);
+            TrainsSearchResult model = new TrainsSearchResult(json);
+
+            return View(model);
         }
     }
 }
