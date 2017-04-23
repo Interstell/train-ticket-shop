@@ -8,6 +8,9 @@
 
 .search-results {
   margin-top: 20px; }
+  .search-results .search-results-info {
+    font-size: 26px;
+    margin-bottom: 15px; }
 
 .search-box {
   padding: 30px 10px; }

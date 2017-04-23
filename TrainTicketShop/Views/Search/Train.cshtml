@@ -1,20 +1,32 @@
 ﻿@model TrainsSearchResult
 
 @{ 
-    ViewBag.Title = "Выбор поезда";
+    ViewBag.Title = "Поиск поезда";
 }
 
 <div class="container">
     @Html.Partial("_SearchBlock")
 </div>
 <div class="container search-results">
+    @if (@Model.Trains.Count > 0) {
+        <div class="search-results-info display-4">По вашему запросу нашлось @Model.Trains.Count поездов:</div>
+    }
+    else {
+        <div class="search-results-info display-4">Рейс по этому маршруту не найден на заданную дату.<br />Попробуйте изменить условия поиска.</div>
+    }
     @foreach (var train in Model.Trains) {
         <div class="train-block w-100">
             <div class="invisible train-hash">@train.Hash</div>
             <div class="row">
                 <div class="col-md-2 col-sm-6">
                     <div class="train-basic-info text-center">
-                        <img src="/img/train_sm.png" />
+                        
+                        @if (train.Category.Id == 12) {
+                            <img src="/img/train-intercity.png" />
+                        }
+                        else {
+                            <img src="/img/train-usual.png" />
+                        }
                         <div class="train-number"><span>@train.Number</span></div>
                         @if (train.Category.Id == 12) {
                             <div class="train-type"><span>@train.Category.Name</span></div>
