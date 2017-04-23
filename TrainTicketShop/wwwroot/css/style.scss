@@ -1,5 +1,13 @@
+$text-gray: #AEAEAE;
+
 body {
   padding-top: 5rem;
+}
+
+.block-vertical-align {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .search-box{
@@ -16,5 +24,71 @@ body {
     margin-top: 20px;
     padding: 0;
   }
+  .reverse-block{
+      cursor:pointer;
+  }
+}
 
+.train-block {
+    .train-basic-info {
+        @extend .block-vertical-align;
+        img{
+            height: 100px;
+            width:100px;
+            margin-bottom: 10px;
+        }
+        .train-number {
+            margin-bottom: 5px;
+
+            span {
+                border-radius: 5px;
+                background-color: #BAC3CC;
+                color: #fff;
+                padding: 3px;
+            }
+        }
+    }
+
+    .train-path-info {
+        .station-name {
+            text-transform: uppercase;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 5px 0;
+        }
+
+        .departure, .arrival {
+            .name {
+                font-size: 12px;
+                color: $text-gray;
+                margin-bottom: -5px;
+            }
+
+            .time {
+                font-weight: 600;
+                font-size: 26px;
+                margin-bottom: -5px;
+            }
+
+            .date {
+                font-size: 18px;
+            }
+        }
+
+        .trip {
+            margin: 10px 0;
+            font-weight: 700;
+            color: $text-gray;
+        }
+    }
+
+    .train-seats-info {
+        .table{
+            @extend .block-vertical-align;
+            th{
+                vertical-align: top;
+                color: darker($text-gray, 0.2);
+            }
+        }
+    }
 }

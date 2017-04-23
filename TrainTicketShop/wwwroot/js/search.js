@@ -7,11 +7,11 @@ $(document).ready(function () {
         orientation: "bottom right",
         startDate: moment().format('DD.MM.YYYY')
     });
-    $('.search-city-input').on('input', function(event) {
+    $('.search-city-input').on('input', function (event) {
         let input = $(this).val();
         //todo clean autocompletion on backspace
         if (input.length > 1) {
-            $.get('/api/search/hints?input=' + ($(this).val()), function(data){
+            $.get('/api/search/hints?input=' + ($(this).val()), function (data) {
                 searchHints = [];
                 if (data.stations && data.stations.length) {
                     for (let station of data.stations) {
@@ -25,13 +25,20 @@ $(document).ready(function () {
                     }
                 }
                 $(event.target).autocomplete({
-                    source: searchHints.slice(0,9),
+                    source: searchHints.slice(0, 9),
                     delay: 0,
                     minLength: 1,
                 });
             });
         }
-    })
+    });
+    $('.reverse-block img').click(function (e) {
+        let t = $(".search-box input[name='from']").val();
+        $(".search-box input[name='from']").val(
+            $(".search-box input[name='to']").val()
+        );
+        $(".search-box input[name='to']").val(t);
+    });
     $('.search-box form').submit(function (e) {
         e.preventDefault();
         let fromText = $(".search-box input[name='from']").val();

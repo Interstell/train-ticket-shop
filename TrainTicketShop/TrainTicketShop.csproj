@@ -5,6 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\js - Копировать\**" />
+    <Content Remove="wwwroot\js - Копировать\**" />
+    <EmbeddedResource Remove="wwwroot\js - Копировать\**" />
+    <None Remove="wwwroot\js - Копировать\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot/css\s5k4dubs.ilu~" />
+    <Content Remove="wwwroot/js\search.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Services\SessionId\privat.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\css\style.css" />
     <Content Include="wwwroot\css\style.css.map" />
     <Content Include="wwwroot\css\style.scss" />

@@ -1,1 +1,71 @@
-﻿
+﻿@{ 
+    ViewBag.Title = "Выбор поезда";
+}
+
+<div class="container">
+    <div class="train-block w-100">
+        <div class="row">
+            <div class="col-md-2 col-sm-6">
+                <div class="train-basic-info text-center">
+                    <img src="/img/train_sm.png" />
+                    <div class="train-number"><span>179К</span></div>
+                    <div>
+                        Киев Пассажирский
+                    </div>
+                    <div>
+                        ↓
+                    </div>
+                    <div>
+                        Днепр Главный
+                    </div>
+                </div>
+            </div>
+            <div class="train-path-info col-md-4 col-sm-6">
+                <div class="station-name">КИЕВ-ПАССАЖИРСКИЙ</div>
+                <div class="departure">
+                    <div class="name">Отправление</div>
+                    <div class="time">08:36</div>
+                    <div class="date">29.04.2017</div>
+                </div>
+                <div class="trip">
+                    <div class="name">В пути</div>
+                    <div class="time">9 ч 15 м</div>
+                </div>
+                <div class="arrival">
+                    <div class="name">Прибытие</div>
+                    <div class="time">17:51</div>
+                    <div class="date">29.04.2017</div>
+                </div>
+                <div class="station-name">ДНЕПР ГЛАВНЫЙ</div>
+            </div>
+            <div class="train-seats-info col-md-6 col-sm-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Типы вагонов</th>
+                            <th>Свободные места<br />(нижние/верхние)</th>
+                            <th>Цена (грн.)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>люкс</td>
+                            <td>34/0</td>
+                            <td>852.9</td>
+                        </tr>
+                        <tr>
+                            <td>купейный</td>
+                            <td>128/164</td>
+                            <td>324.81 - 425.75</td>
+                        </tr>
+                        <tr>
+                            <td>плацкарт</td>
+                            <td>0/50</td>
+                            <td>231.59</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

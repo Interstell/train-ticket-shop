@@ -269,3 +269,4 @@ __pycache__/
 
 # My ignores
 */wwwroot/lib
+*/pb_session_id.json
