@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading.Tasks;
 using TrainTicketShop.Services.SessionId;
 
-namespace TrainTicketShop.Services
-{
+namespace TrainTicketShop.Services {
     public class TrainInfoService
     {
         private HttpClient _httpClient;

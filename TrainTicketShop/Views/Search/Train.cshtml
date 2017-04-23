@@ -5,6 +5,9 @@
 }
 
 <div class="container">
+    @Html.Partial("_SearchBlock")
+</div>
+<div class="container search-results">
     @foreach (var train in Model.Trains) {
         <div class="train-block w-100">
             <div class="invisible train-hash">@train.Hash</div>

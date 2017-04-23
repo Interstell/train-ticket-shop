@@ -6,6 +6,9 @@
   top: 50%;
   transform: translateY(-50%); }
 
+.search-results {
+  margin-top: 20px; }
+
 .search-box {
   padding: 30px 10px; }
   @media (min-width: 576px) {
