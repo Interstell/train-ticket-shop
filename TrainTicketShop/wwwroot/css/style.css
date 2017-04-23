@@ -58,5 +58,8 @@
 
 .train-block .train-seats-info .table th {
   vertical-align: top;
-  color: darker(#AEAEAE, 0.2); }
+  color: #626262; }
+
+.train-divider {
+  border-top: 2px solid #c8c8c8; }
 

@@ -7,9 +7,11 @@ namespace TrainTicketShop.Controllers {
     public class TrainController : Controller
     {
         private TrainInfoService _trainInfoService;
+        private CarriageInfoService _carriageInfoService;
 
-        public TrainController(TrainInfoService trainInfoService) {
+        public TrainController(TrainInfoService trainInfoService, CarriageInfoService carriageInfoService) {
             _trainInfoService = trainInfoService;
+            _carriageInfoService = carriageInfoService;
         }
 
         [HttpGet]
@@ -19,6 +21,17 @@ namespace TrainTicketShop.Controllers {
                 ));*/
             /*string json = _trainInfoService.GetTrainInfo(hash);
             Train result = new Train(json);*/
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Car([FromQuery]string hash) {
+            /*string json = _carriageInfoService.GetCarriageInfo(hash);
+            Carriage car = new Carriage(json);*/
+            /*return new JsonResult(JsonConvert.DeserializeObject(
+                    _carriageInfoService.GetCarriageInfo(hash);
+                ));*/
 
             return View();
         }

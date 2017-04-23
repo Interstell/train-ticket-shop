@@ -87,8 +87,12 @@ body {
             @extend .block-vertical-align;
             th{
                 vertical-align: top;
-                color: darker($text-gray, 0.2);
+                color: darken($text-gray, 30%);
             }
         }
     }
+}
+
+.train-divider{
+    border-top: 2px solid lighten($text-gray, 10%) ;
 }

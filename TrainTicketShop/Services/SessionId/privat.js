@@ -4,7 +4,7 @@ To RUN: casperjs test privat.js
 
 var fs = require('fs');
 
-casper.test.begin('Test Container Tags', function suite(test) {
+casper.test.begin('Get PB SessionId', function suite(test) {
 
     casper.start("https://bilet.privatbank.ua/train/", function () {
 
