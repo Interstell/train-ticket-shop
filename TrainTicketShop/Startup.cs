@@ -45,6 +45,7 @@ namespace TrainTicketShop {
 
             services.AddSingleton<PbSessionIdService>();
             services.AddScoped<SearchTrainService>();
+            services.AddScoped<TrainInfoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

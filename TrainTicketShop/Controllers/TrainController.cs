@@ -1,16 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+using TrainTicketShop.Entities;
+using TrainTicketShop.Services;
 
-namespace TrainTicketShop.Controllers
-{
+namespace TrainTicketShop.Controllers {
     public class TrainController : Controller
     {
-        [HttpGet]
-        public IActionResult Index() {
+        private TrainInfoService _trainInfoService;
 
+        public TrainController(TrainInfoService trainInfoService) {
+            _trainInfoService = trainInfoService;
+        }
+
+        [HttpGet]
+        public IActionResult Index([FromQuery]string hash) {
+            /*return new JsonResult(JsonConvert.DeserializeObject(
+                    _trainInfoService.GetTrainInfo(hash)
+                ));*/
+            /*string json = _trainInfoService.GetTrainInfo(hash);
+            Train result = new Train(json);*/
+
+            return View();
         }
     }
 }

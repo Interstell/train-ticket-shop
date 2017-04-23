@@ -24,7 +24,10 @@ namespace TrainTicketShop.Controllers {
         public IActionResult Train([FromQuery]int from, [FromQuery]int to, [FromQuery]string date) {
             /*string json = _searchTrainService.GetTrainsFromWeb(from, to, date);
             TrainsSearchResult result = new TrainsSearchResult(json);*/
-            return View();
+            return new JsonResult(JsonConvert.DeserializeObject(
+                    _searchTrainService.GetTrainsFromWeb(from, to, date)
+                ));
+            //return View();
         }
     }
 }
