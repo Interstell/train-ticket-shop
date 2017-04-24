@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\js - Копировать\**" />
-    <Content Remove="wwwroot\js - Копировать\**" />
-    <EmbeddedResource Remove="wwwroot\js - Копировать\**" />
-    <None Remove="wwwroot\js - Копировать\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Remove="wwwroot/css\s5k4dubs.ilu~" />
     <Content Remove="wwwroot/js\search.js" />
   </ItemGroup>

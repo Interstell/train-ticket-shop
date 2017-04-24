@@ -1,1 +1,56 @@
-﻿
+﻿@model Train
+
+@{
+    ViewBag.Title = "Поезд";
+}
+
+<div class="train-full-info container">
+    <div class="block-caption display-4">Выберите вагон</div>
+    <div class="train-full-info-content card card-outline-info">
+        <div class="row">
+            <div class="train-number col-md-2 text-center">
+                <span>@Model.Number</span>
+            </div>
+            <div class="train-name col-md-4">
+                @Model.PassengerDepartureStation.Name →<br />@Model.PassengerArrivalStation.Name
+            </div>
+            <div class="train-time-info col-md-6">
+                @{ var departureDateTime = DateTime.ParseExact(Model.PassengerDepartureDate, "yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);}
+                <div class="date">
+                    <span>@departureDateTime.ToString("dd.MM.yyyy")</span>
+                </div>
+                <div class="departure">
+                    отправление <span>@departureDateTime.ToString("HH:mm")</span>
+                </div>
+                @{ var arrivalDateTime = DateTime.ParseExact(Model.PassengerArrivalDate, "yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);}
+                <div class="arrival">
+                    прибытие <span>@arrivalDateTime.ToString("HH:mm")</span>
+                </div>
+                @{ var hours = (int)(Model.TravelTime / 60);
+                    var minutes = Model.TravelTime - hours * 60;}
+                <div class="trip-time">
+                    В пути <span>@hours ч @minutes м</span>
+                </div>
+            </div>
+        </div>
+        @foreach (var carType in Model.CarTypes) {
+            <div class="train-class col-md-10 push-md-1">
+                <div class="train-class-name text-center">
+                    <span>@carType.Name</span>
+                </div>
+                <div class="train-cars row">
+                    @foreach (var car in Model.Cars.Where(car => car.TypeId == carType.Id)) {
+                        <div class="col-md-4 col-sm-6 col-6">
+                            <div class="car">
+                                <div class="number">@car.Number</div>
+                                <div class="free-seats text-center">Мест: @car.FreeSeats</div>
+                                <span class="hash" style="display: none">@car.Hash</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        
+    </div>
+</div>

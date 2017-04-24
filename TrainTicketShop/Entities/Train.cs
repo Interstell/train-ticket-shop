@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace TrainTicketShop.Entities {
-    public class CarBriefly {
+    public class CarBriefly : IComparable {
         public string Hash { get; set; }
         public string Number { get; set; }
         public string Price { get; set; }
@@ -14,6 +15,10 @@ namespace TrainTicketShop.Entities {
         public int SideLowerSeats { get; set; }
         public int SideUpperSeats { get; set; }
         public int BedPrice { get; set; }
+
+        public int CompareTo(object obj) {
+            return this.Number.CompareTo(((CarBriefly)obj).Number);
+        }
     }
 
     public class TrainSuperBriefly {
@@ -33,8 +38,8 @@ namespace TrainTicketShop.Entities {
     }
 
     public class Train {
-        List<CarBriefly> Cars;
-        List<Description> CarTypes;
+        public List<CarBriefly> Cars;
+        public List<Description> CarTypes;
 
         public string Number { get; set; }
         public int TravelTime { get; set; }
@@ -68,6 +73,7 @@ namespace TrainTicketShop.Entities {
                     BedPrice = rawCar.bedPrice
                 });
             }
+            Cars.Sort();
             CarTypes = new List<Description>();
             foreach (dynamic rawCarType in result.carTypes) {
                 CarTypes.Add(

@@ -29,17 +29,18 @@
   cursor: pointer; }
   .train-block:hover {
     background-color: rgba(243, 243, 243, 0.7); }
-  .train-block .train-basic-info img {
-    height: 100px;
-    width: 100px;
-    margin-bottom: 10px; }
   .train-block .train-basic-info .train-number {
     margin-bottom: 5px; }
     .train-block .train-basic-info .train-number span {
       border-radius: 5px;
       background-color: #BAC3CC;
       color: #fff;
-      padding: 3px; }
+      padding: 3px;
+      font-size: inherit; }
+  .train-block .train-basic-info img {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 10px; }
   .train-block .train-basic-info .train-type {
     margin-bottom: 5px; }
     .train-block .train-basic-info .train-type span {
@@ -75,4 +76,63 @@
 
 .train-divider {
   border-top: 2px solid #c8c8c8; }
+
+.train-full-info .block-caption {
+  font-size: 40px;
+  margin-bottom: 40px; }
+
+.train-full-info .train-full-info-content {
+  padding: 10px 0; }
+
+.train-full-info .train-number {
+  margin-bottom: 5px; }
+  .train-full-info .train-number span {
+    border-radius: 5px;
+    background-color: #BAC3CC;
+    color: #fff;
+    padding: 5px 20px;
+    font-size: 20px; }
+
+.train-full-info .train-name {
+  font-size: 18px;
+  font-weight: 700; }
+
+.train-full-info .train-time-info > div {
+  display: inline-block; }
+  .train-full-info .train-time-info > div span {
+    font-weight: 700; }
+
+.train-full-info .train-time-info .date {
+  margin-right: 10px; }
+
+.train-full-info .train-class .train-class-name {
+  border-bottom: 2px solid #AEAEAE; }
+  .train-full-info .train-class .train-class-name span {
+    background-color: #AEAEAE;
+    font-size: 20px;
+    color: #fff;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 5px 10px 4px; }
+
+.train-full-info .train-class .train-cars {
+  margin: 0;
+  padding: 20px 10px; }
+  .train-full-info .train-class .train-cars .car {
+    border: 2px solid #0275D8;
+    border-radius: 5px;
+    cursor: pointer; }
+    .train-full-info .train-class .train-cars .car:hover {
+      background-color: #eeeeee; }
+    .train-full-info .train-class .train-cars .car > div {
+      display: inline-block;
+      padding: 20px 10px;
+      font-weight: 600;
+      line-height: 1.1;
+      text-align: center; }
+    .train-full-info .train-class .train-cars .car .number {
+      border-right: 2px solid #0275D8;
+      font-size: 26px; }
+    .train-full-info .train-class .train-cars .car .free-seats {
+      font-size: 26px; }
 

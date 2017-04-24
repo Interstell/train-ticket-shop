@@ -62,4 +62,11 @@ $(document).ready(function () {
         let redirectUrl = `/train?hash=${hash}`;
         window.location.href = redirectUrl;
     });
-})
+    $('.car').click(function (e) {
+        e.preventDefault();
+        let hash = $(this).find('.hash').text();
+        let redirectUrl = `/train/car?hash=${hash}`;
+        window.location.href = redirectUrl;
+    });
+
+});

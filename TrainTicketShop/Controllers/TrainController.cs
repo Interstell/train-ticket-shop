@@ -19,10 +19,10 @@ namespace TrainTicketShop.Controllers {
             /*return new JsonResult(JsonConvert.DeserializeObject(
                     _trainInfoService.GetTrainInfo(hash)
                 ));*/
-            /*string json = _trainInfoService.GetTrainInfo(hash);
-            Train result = new Train(json);*/
+            string json = _trainInfoService.GetTrainInfo(hash);
+            Train model = new Train(json);
 
-            return View();
+            return View(model);
         }
 
         [HttpGet]
