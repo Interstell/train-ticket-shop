@@ -1,1 +1,11 @@
-﻿
+﻿@model Carriage
+
+<div class="container">
+    <div id="free-seats" style="display:none">@Html.Raw(Json.Serialize(Model.Seats))</div>
+
+    @Html.Raw(ViewBag.CarriageSchemaSvg)
+</div>
+
+@section Scripts{
+    <script src="/js/carriage.js"></script>
+}

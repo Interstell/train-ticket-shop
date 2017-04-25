@@ -7,5 +7,7 @@ namespace TrainTicketShop.Entities {
         public TrainTicketShopDbContext(DbContextOptions options) : base(options) {
 
         }
+
+        public DbSet<CarriageSchema> CarriageSchemas { get; set; }
     }
 }

@@ -12,7 +12,6 @@ using System.Net.Http;
 using TrainTicketShop.Services;
 using StackExchange.Redis;
 using TrainTicketShop.Services.SessionId;
-using Newtonsoft.Json.Serialization;
 
 namespace TrainTicketShop {
     public class Startup {
@@ -29,12 +28,7 @@ namespace TrainTicketShop {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services) {
-            services.AddMvc()
-                .AddJsonOptions(options =>
-                {
-                    options.SerializerSettings.ContractResolver =
-                        new CamelCasePropertyNamesContractResolver();
-                });
+            services.AddMvc();
             services.AddSingleton(Configuration);
             services.AddDbContext<TrainTicketShopDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("LocalDB")));
@@ -47,12 +41,14 @@ namespace TrainTicketShop {
             }));
             services.AddScoped<SearchHintsService>();
             services.AddSingleton(ConnectionMultiplexer.Connect(Configuration.GetConnectionString("Redis")));
-            services.AddSingleton<CacheService>();
+            services.AddScoped<CacheService>();
 
-            services.AddSingleton<PbSessionIdService>();
+            services.AddSingleton<PbSessionIdService>(); //todo interfaces
             services.AddScoped<SearchTrainService>();
             services.AddScoped<TrainInfoService>();
             services.AddScoped<CarriageInfoService>();
+
+            services.AddScoped<ICarriageSchemaData, CarriageSchemaData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

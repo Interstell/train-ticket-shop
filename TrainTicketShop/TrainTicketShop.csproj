@@ -18,11 +18,11 @@
     <Content Include="wwwroot\css\style.css.map" />
     <Content Include="wwwroot\css\style.scss" />
     <Content Include="wwwroot\img\switch.png" />
+    <Content Include="wwwroot\js\carriage.js" />
     <Content Include="wwwroot\js\search.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="ViewComponents\" />
     <Folder Include="ViewComponents\" />
     <Folder Include="ViewModels\" />

@@ -8,10 +8,14 @@ namespace TrainTicketShop.Controllers {
     {
         private TrainInfoService _trainInfoService;
         private CarriageInfoService _carriageInfoService;
+        private ICarriageSchemaData _carriageSchemaData;
 
-        public TrainController(TrainInfoService trainInfoService, CarriageInfoService carriageInfoService) {
+        public TrainController(TrainInfoService trainInfoService, 
+            CarriageInfoService carriageInfoService,
+            ICarriageSchemaData carriageSchemaData) {
             _trainInfoService = trainInfoService;
             _carriageInfoService = carriageInfoService;
+            _carriageSchemaData = carriageSchemaData;
         }
 
         [HttpGet]
@@ -27,13 +31,18 @@ namespace TrainTicketShop.Controllers {
 
         [HttpGet]
         public IActionResult Car([FromQuery]string hash) {
-            /*string json = _carriageInfoService.GetCarriageInfo(hash);
-            Carriage car = new Carriage(json);*/
             /*return new JsonResult(JsonConvert.DeserializeObject(
                     _carriageInfoService.GetCarriageInfo(hash);
                 ));*/
 
-            return View();
+            string json = _carriageInfoService.GetCarriageInfo(hash);
+            Carriage model = new Carriage(json);
+
+            CarriageSchema schema = _carriageSchemaData.GetSchema(model.Schema.Id);
+
+            ViewBag.CarriageSchemaSvg = schema.Schema;
+
+            return View(model);
         }
     }
 }

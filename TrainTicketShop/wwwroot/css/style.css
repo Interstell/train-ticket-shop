@@ -121,7 +121,8 @@
   .train-full-info .train-class .train-cars .car {
     border: 2px solid #0275D8;
     border-radius: 5px;
-    cursor: pointer; }
+    cursor: pointer;
+    margin-bottom: 20px; }
     .train-full-info .train-class .train-cars .car:hover {
       background-color: #eeeeee; }
     .train-full-info .train-class .train-cars .car > div {
@@ -135,4 +136,7 @@
       font-size: 26px; }
     .train-full-info .train-class .train-cars .car .free-seats {
       font-size: 26px; }
+
+.car-seat {
+  background-color: #fff; }
 
