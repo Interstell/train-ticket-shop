@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using TrainTicketShop.Entities;
 using TrainTicketShop.Services;
+using TrainTicketShop.ViewModels;
+using System.Collections.Generic;
 
 namespace TrainTicketShop.Controllers {
     public class TrainController : Controller
@@ -36,13 +37,18 @@ namespace TrainTicketShop.Controllers {
                 ));*/
 
             string json = _carriageInfoService.GetCarriageInfo(hash);
-            Carriage model = new Carriage(json);
+            Carriage carriage = new Carriage(json);
 
-            CarriageSchema schema = _carriageSchemaData.GetSchema(model.Schema.Id);
+            CarriageSchema schema = _carriageSchemaData.GetSchema(carriage.Schema.Id);
 
             ViewBag.CarriageSchemaSvg = schema.Schema;
 
-            return View(model);
+
+            return View(new CarriageViewModel {
+                Carriage = carriage,
+                CarriageSchema = schema,
+                Tickets = new List<TicketViewModel>(new TicketViewModel[10]) //todo can be invalid
+            });
         }
     }
 }

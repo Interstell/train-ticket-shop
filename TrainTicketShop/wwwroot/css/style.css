@@ -137,6 +137,13 @@
     .train-full-info .train-class .train-cars .car .free-seats {
       font-size: 26px; }
 
-.car-seat {
-  background-color: #fff; }
+.car-full-info .block-caption {
+  font-size: 40px;
+  margin-bottom: 40px; }
+
+.car-full-info .passengers-block {
+  margin-top: 20px; }
+  .car-full-info .passengers-block .passenger .passenger-number {
+    font-size: 26px;
+    margin-bottom: 20px; }
 

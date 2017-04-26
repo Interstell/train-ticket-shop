@@ -25,7 +25,6 @@
   <ItemGroup>
     <Folder Include="ViewComponents\" />
     <Folder Include="ViewComponents\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\Shared\Components\" />
   </ItemGroup>
   <ItemGroup>

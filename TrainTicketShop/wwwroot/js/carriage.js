@@ -1,5 +1,4 @@
 ﻿let freeSeatsArr = JSON.parse($('#free-seats').text());
-console.log(freeSeatsArr);
 $('path').each(function (i, elem) {
     if ($(this).attr('id').match(/s[\d]+/)) {
         $(this).addClass('car-seat');
@@ -28,8 +27,10 @@ $freeSeats.hover(
         $('#n' + $(this).attr('number')).css('fill', '#fff');
     },
     function (e) {
-        $(this).css('fill', '#dedfe0');
-        $('#n' + $(this).attr('number')).css('fill', '#0275d8');
+        if (!$(this).hasClass('selected')) {
+            $(this).css('fill', '#dedfe0');
+            $('#n' + $(this).attr('number')).css('fill', '#0275d8');
+        }
     }
 );
 
@@ -48,9 +49,20 @@ $('.car-seat, .car-seat-caption').filter('.free').each(function (i, elem) {
     $(this).css('cursor', 'pointer');
 });
 
-
-
-
-$('.car-seat, .car-seat-caption').click(function (e) {
-    console.log($(this).attr('number'));
+$('.car-seat, .car-seat-caption').filter('.free').click(function (e) {
+    var isCaption = $(this).attr('id').match(/n/) !== null;
+    if (isCaption) {
+        $(this).toggleClass('selected');
+        $('#s' + $(this).attr('number')).toggleClass('selected');
+    }
+    else {
+        $(this).toggleClass('selected');
+        $('#n' + $(this).attr('number')).toggleClass('selected');
+    }
 }); 
+
+$('.datepicker input').datepicker({
+    format: "dd.mm.yyyy",
+    language: "ru",
+    orientation: "top right"
+});
