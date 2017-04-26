@@ -3,6 +3,7 @@ using TrainTicketShop.Entities;
 using TrainTicketShop.Services;
 using TrainTicketShop.ViewModels;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace TrainTicketShop.Controllers {
     public class TrainController : Controller
@@ -46,8 +47,8 @@ namespace TrainTicketShop.Controllers {
 
             return View(new CarriageViewModel {
                 Carriage = carriage,
-                CarriageSchema = schema,
-                Tickets = new List<TicketViewModel>(new TicketViewModel[10]) //todo can be invalid
+                CarriageSerialized = JsonConvert.SerializeObject(carriage),
+                Tickets = new List<TicketViewModel>(new TicketViewModel[3]) //todo can be invalid
             });
         }
     }
