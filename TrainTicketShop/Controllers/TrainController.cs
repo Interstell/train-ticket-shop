@@ -48,7 +48,7 @@ namespace TrainTicketShop.Controllers {
             return View(new CarriageViewModel {
                 Carriage = carriage,
                 CarriageSerialized = JsonConvert.SerializeObject(carriage),
-                Tickets = new List<TicketViewModel>(new TicketViewModel[3]) //todo can be invalid
+                Tickets = new List<TicketViewModel>(new TicketViewModel[10]) //todo can be invalid
             });
         }
     }

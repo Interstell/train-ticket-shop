@@ -230,11 +230,26 @@ body {
 
     .passengers-block {
         margin-top: 20px;
+
         .passenger {
+            display: none;
+
             .passenger-number {
                 font-size: 26px;
                 margin-bottom: 20px;
             }
+        }
+
+        .order-btn {
+            display: none;
+        }
+        .email{
+            display:none;
+            margin-bottom: 20px;
+        }
+
+        .additional-info {
+            display: none;
         }
     }
 }

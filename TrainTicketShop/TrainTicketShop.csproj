@@ -19,6 +19,7 @@
     <Content Include="wwwroot\css\style.scss" />
     <Content Include="wwwroot\img\switch.png" />
     <Content Include="wwwroot\js\carriage.js" />
+    <Content Include="wwwroot\js\schema.js" />
     <Content Include="wwwroot\js\search.js" />
   </ItemGroup>
 
@@ -28,6 +29,7 @@
     <Folder Include="Views\Shared\Components\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="6.4.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="1.1.1" />

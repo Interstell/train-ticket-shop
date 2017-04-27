@@ -10,16 +10,17 @@
     <div id="free-seats" style="display:none">@Html.Raw(Json.Serialize(Model.Carriage.Seats))</div>
 
     <div class="car-schema text-center">
-        @Html.Raw(ViewBag.CarriageSchemaSvg)
+        @Html.Raw(@ViewBag.CarriageSchemaSvg)
     </div>
 
 
     <form action="/order" class="passengers-block" method="post" asp-antiforgery="true">
         @Html.HiddenFor(x => x.CarriageSerialized)
         @for (int i = 0; i < Model.Tickets.Count; i++) {
-            <div class="passenger">
+            <div class="passenger" id="passenger@((i+1).ToString())">
                 <div class="passenger-number">Пассажир №<span class="number">@(i+1)</span> (место: <span class="seat"></span>)</div>
                 <input class="seat-input" asp-for="Tickets[i].SeatNumber" type="hidden"/>
+                <input class="passenger-is-active" asp-for="Tickets[i].IsActive" type="hidden"/>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="row">
@@ -31,13 +32,13 @@
                                 <input asp-for="Tickets[i].Name" type="text" class="form-control" placeholder="Имя">
                                 <span asp-validation-for="Tickets[i].Name"></span>
                             </div>
-                            <div class="form-group col-6">
-                                <div class="datepicker">
-                                    <input asp-for="Tickets[i].BirthDate" type="text" class="form-control" name="date" placeholder="Дата рождения" autocomplete="off">
+                            <div class="additional-info birthdate form-group col-6">
+                                <div class="birthdate-picker">
+                                    <input asp-for="Tickets[i].BirthDate" type="text" class="form-control" placeholder="Дата рождения" autocomplete="off">
                                     <span asp-validation-for="Tickets[i].BirthDate"></span>
                                 </div>
                             </div>
-                            <div class="form-group col-6">
+                            <div class="additional-info student-id form-group col-6">
                                 <input asp-for="Tickets[i].StudentsCardId" type="text" class="form-control" placeholder="Серия и № студ. билета">
                                 <span asp-validation-for="Tickets[i].StudentsCardId"></span>
                             </div>
@@ -46,7 +47,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <select class="form-control" asp-for="Tickets[i].PassengerType" asp-items="@Html.GetEnumSelectList(typeof(PassengerType))">
+                            <select class="passenger-type form-control" asp-for="Tickets[i].PassengerType" asp-items="@Html.GetEnumSelectList(typeof(PassengerType))">
                             </select>
                             <span asp-validation-for="Tickets[i].PassengerType"></span>
                         </div>
@@ -54,8 +55,13 @@
                 </div>
             </div>
         }
+        
         <div class="text-center">
-            <button type="submit" class="btn btn-lg btn-success">Оформить билеты</button>
+            <div class="email col-md-6 push-md-3">
+                <input asp-for="Email" type="email" class="form-control" placeholder="Ваш email">
+                <span asp-validation-for="Email"></span>
+            </div>
+            <button type="submit" class="order-btn btn btn-lg btn-success">Оформить билеты</button>
         </div>
     </form>
 </div>

@@ -18,6 +18,10 @@ namespace TrainTicketShop.Entities {
         public List<int> Seats;
         public TrainSuperBriefly Train;
 
+        public Carriage() {
+
+        }
+
         public Carriage(string json) {
             dynamic result = JsonConvert.DeserializeObject<dynamic>(json);
             this.Hash = result.car.hash;
