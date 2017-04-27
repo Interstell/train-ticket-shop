@@ -1,14 +1,20 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
+using TrainTicketShop.Services;
 
-namespace TrainTicketShop.Services {
-    public class SearchHintsService
+namespace TrainTicketShop.Services.Railway {
+    // #PATTERN PROXY
+    public interface ISearchHintsService {
+        string GetHints(string input);
+    }
+
+    public class SearchHintsService : ISearchHintsService
     {
         private HttpClient _httpClient;
-        private CacheService _cache;
+        private IHintsCacheService _cache;
 
-        public SearchHintsService(HttpClient client, CacheService cache) {
+        public SearchHintsService(HttpClient client, IHintsCacheService cache) {
             _httpClient = client;
             _cache = cache;
         }

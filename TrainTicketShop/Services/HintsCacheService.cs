@@ -1,14 +1,21 @@
 ﻿using StackExchange.Redis;
 
 namespace TrainTicketShop.Services {
-    public class CacheService
+    // #PATTERN ADAPTER
+    public interface IHintsCacheService {
+        string Get(string key);
+        void Set(string key, string value);
+    }
+
+
+    public class HintsCacheService : IHintsCacheService
     {
         private ConnectionMultiplexer _redis;
         private IDatabase _db;
 
-        public CacheService(ConnectionMultiplexer multiplexer) {
+        public HintsCacheService(ConnectionMultiplexer multiplexer) {
             _redis = multiplexer;
-            _db = _redis.GetDatabase();
+            _db = _redis.GetDatabase(0);
         }
 
         public string Get(string key) {

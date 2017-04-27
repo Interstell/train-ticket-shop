@@ -12,6 +12,7 @@ using System.Net.Http;
 using TrainTicketShop.Services;
 using StackExchange.Redis;
 using TrainTicketShop.Services.SessionId;
+using TrainTicketShop.Services.Railway;
 
 namespace TrainTicketShop {
     public class Startup {
@@ -41,14 +42,17 @@ namespace TrainTicketShop {
             }));
             services.AddScoped<SearchHintsService>();
             services.AddSingleton(ConnectionMultiplexer.Connect(Configuration.GetConnectionString("Redis")));
-            services.AddScoped<CacheService>();
+            services.AddScoped<HintsCacheService>();
 
-            services.AddSingleton<PbSessionIdService>(); //todo interfaces
-            services.AddScoped<SearchTrainService>();
-            services.AddScoped<TrainInfoService>();
-            services.AddScoped<CarriageInfoService>();
+            services.AddSingleton<ISessionIdService, PbSessionIdService>();
+            services.AddScoped<ISearchTrainService, SearchTrainService>();
+            services.AddScoped<ITrainInfoService, TrainInfoService>();
+            services.AddScoped<ICarriageInfoService, CarriageInfoService>();
 
             services.AddScoped<ICarriageSchemaData, CarriageSchemaData>();
+
+            services.AddScoped<IRailwayService, RailwayService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

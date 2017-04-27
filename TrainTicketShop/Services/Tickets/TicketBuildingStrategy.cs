@@ -7,6 +7,7 @@ using TrainTicketShop.ViewModels;
 
 namespace TrainTicketShop.Services.Tickets
 {
+    // #PATTERN STRATEGY
     public abstract class TicketBuildingStrategy
     {
         protected Ticket _ticket;

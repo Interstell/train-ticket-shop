@@ -19,7 +19,6 @@
     <Content Include="wwwroot\css\style.scss" />
     <Content Include="wwwroot\img\switch.png" />
     <Content Include="wwwroot\js\carriage.js" />
-    <Content Include="wwwroot\js\schema.js" />
     <Content Include="wwwroot\js\search.js" />
   </ItemGroup>
 

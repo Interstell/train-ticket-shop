@@ -1,55 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using TrainTicketShop.Services;
+using TrainTicketShop.Services.Railway;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace TrainTicketShop.Controllers.REST.SearchHints {
     [Route("api/search/hints")]
     public class SearchHintsController : Controller {
-        private SearchHintsService _searchHintsService;
+        private IRailwayService _railwayService;
 
-        public SearchHintsController(SearchHintsService searchHintsService) {
-            _searchHintsService = searchHintsService;
+        public SearchHintsController(IRailwayService railwayService) {
+            _railwayService = railwayService;
         }
 
         [HttpGet]
         public JsonResult Get([FromQuery] string input) {
-            return new JsonResult(JsonConvert.DeserializeObject(_searchHintsService.GetHints(input)));
+            return new JsonResult(JsonConvert.DeserializeObject(_railwayService.GetHints(input)));
         }
-
-        
-
-        /*// GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }*/
     }
 }

@@ -4,15 +4,13 @@ using System.IO;
 using Microsoft.Extensions.Logging;
 
 namespace TrainTicketShop.Services.SessionId {
-    internal class SessionData {
-        public string sessionId { get; set; }
-        public long activeSince { get; set; }
-        public long activeUntil { get; set; }
-        public string activeSinceStr { get; set; }
+
+    public interface ISessionIdService {
+        string GetSessionId();
     }
 
-    public class PbSessionIdService
-    {
+
+    public class PbSessionIdService : ISessionIdService {
         private SessionData _sessionData; //todo make DI singleton and update by Cron
         private ILogger _logger;
 
@@ -20,7 +18,7 @@ namespace TrainTicketShop.Services.SessionId {
             _logger = logger;
             updateSessionDataFromFile();
         }
-        
+
         private void updateSessionDataFromFile() {
             try {
                 using (StreamReader reader = File.OpenText("./Services/SessionId/pb_session_id.json")) {
@@ -36,6 +34,13 @@ namespace TrainTicketShop.Services.SessionId {
         public string GetSessionId() {
             return _sessionData.sessionId;
         }
-        
+
+    }
+
+    internal class SessionData {
+        public string sessionId { get; set; }
+        public long activeSince { get; set; }
+        public long activeUntil { get; set; }
+        public string activeSinceStr { get; set; }
     }
 }

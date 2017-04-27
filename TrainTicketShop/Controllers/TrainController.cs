@@ -4,25 +4,25 @@ using TrainTicketShop.Services;
 using TrainTicketShop.ViewModels;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using TrainTicketShop.Services.Railway;
 
 namespace TrainTicketShop.Controllers {
     public class TrainController : Controller
     {
-        private TrainInfoService _trainInfoService;
-        private CarriageInfoService _carriageInfoService;
-        private ICarriageSchemaData _carriageSchemaData;
 
-        public TrainController(TrainInfoService trainInfoService, 
-            CarriageInfoService carriageInfoService,
+        private ICarriageSchemaData _carriageSchemaData;
+        private IRailwayService _railwayService;
+
+        public TrainController(IRailwayService railwayService,
             ICarriageSchemaData carriageSchemaData) {
-            _trainInfoService = trainInfoService;
-            _carriageInfoService = carriageInfoService;
+
             _carriageSchemaData = carriageSchemaData;
+            _railwayService = railwayService;
         }
 
         [HttpGet]
         public IActionResult Index([FromQuery]string hash) {
-            string json = _trainInfoService.GetTrainInfo(hash);
+            string json = _railwayService.GetTrainInfo(hash);
             Train model = new Train(json);
 
             return View(model);
@@ -30,7 +30,7 @@ namespace TrainTicketShop.Controllers {
 
         [HttpGet]
         public IActionResult Car([FromQuery]string hash) {
-            string json = _carriageInfoService.GetCarriageInfo(hash);
+            string json = _railwayService.GetCarriageInfo(hash);
             Carriage carriage = new Carriage(json);
 
             CarriageSchema schema = _carriageSchemaData.GetSchema(carriage.Schema.Id);

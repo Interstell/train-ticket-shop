@@ -2,15 +2,19 @@
 using System.Net.Http;
 using TrainTicketShop.Services.SessionId;
 
-namespace TrainTicketShop.Services {
-    public class TrainInfoService
+namespace TrainTicketShop.Services.Railway {
+    public interface ITrainInfoService {
+        string GetTrainInfo(string trainHash);
+    }
+
+    public class TrainInfoService : ITrainInfoService
     {
         private HttpClient _httpClient;
-        private PbSessionIdService _pbSessionIdService;
+        private ISessionIdService _sessionIdService;
 
-        public TrainInfoService(HttpClient client, PbSessionIdService pbSessionIdService) {
+        public TrainInfoService(HttpClient client, ISessionIdService sessionIdService) {
             _httpClient = client;
-            _pbSessionIdService = pbSessionIdService;
+            _sessionIdService = sessionIdService;
         }
 
         public string GetTrainInfo(string trainHash) {
@@ -18,7 +22,7 @@ namespace TrainTicketShop.Services {
                     new KeyValuePair<string, string>("lang", "RU"),
                     new KeyValuePair<string, string>("trainHash", trainHash),
                     new KeyValuePair<string, string>("trainInfo", "true"),
-                    new KeyValuePair<string, string>("sessionId", _pbSessionIdService.GetSessionId())
+                    new KeyValuePair<string, string>("sessionId", _sessionIdService.GetSessionId())
                 });
             var result = _httpClient.PostAsync("https://bilet.privatbank.ua/sm/train/train.json", body).Result;
             return result.Content.ReadAsStringAsync().Result;

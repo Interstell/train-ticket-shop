@@ -2,15 +2,19 @@
 using System.Net.Http;
 using TrainTicketShop.Services.SessionId;
 
-namespace TrainTicketShop.Services {
-    public class CarriageInfoService
+namespace TrainTicketShop.Services.Railway {
+    public interface ICarriageInfoService {
+        string GetCarriageInfo(string carriageHash);
+    }
+
+    public class CarriageInfoService : ICarriageInfoService
     {
-        private PbSessionIdService _pbSessionIdService;
+        private ISessionIdService _pbSessionIdService;
         private HttpClient _httpClient;
 
-        public CarriageInfoService(HttpClient client, PbSessionIdService pbSessionIdService) {
+        public CarriageInfoService(HttpClient client, ISessionIdService sessionIdService) {
             _httpClient = client;
-            _pbSessionIdService = pbSessionIdService;
+            _pbSessionIdService = sessionIdService;
         }
 
         public string GetCarriageInfo(string carriageHash) {

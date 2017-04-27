@@ -7,6 +7,8 @@ using TrainTicketShop.ViewModels;
 
 namespace TrainTicketShop.Services.Tickets
 {
+    // #PATTERN BUILDER
+
     interface ITicketBuilder {
         void ChooseStrategy();
         void FillPassengerInfo();
