@@ -5,21 +5,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TrainTicketShop.Entities;
+using TrainTicketShop.Services.Tickets;
 using TrainTicketShop.ViewModels;
 
-namespace TrainTicketShop.Controllers
-{
-    public class OrderController : Controller
-    {
+namespace TrainTicketShop.Controllers {
+    public class OrderController : Controller {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Index(CarriageViewModel model) {
             model.Carriage = JsonConvert.DeserializeObject<Carriage>(model.CarriageSerialized);
-            return new JsonResult(JsonConvert.SerializeObject(model));
-            /*if (ModelState.IsValid) {
-                return new JsonResult(JsonConvert.SerializeObject(model));
+
+            List<Ticket> tickets = new List<Ticket>();
+            foreach (var ticketVM in model.Tickets.Where(ticket => ticket.IsActive)) {
+                ITicketBuilder builder = new TicketBuilder(ticketVM, model.Carriage, model.Email);
+                ConstructTicket(builder);
+                tickets.Add(builder.Ticket);
             }
-            else return View();*/
+            return View();
+
+        }
+
+        private Ticket ConstructTicket(ITicketBuilder builder) {
+            builder.ChooseStrategy();
+            builder.FillPassengerInfo();
+            builder.FillTrainInfo();
+            builder.FillCarriageInfo();
+            return builder.Ticket;
         }
     }
 }

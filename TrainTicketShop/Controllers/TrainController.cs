@@ -22,9 +22,6 @@ namespace TrainTicketShop.Controllers {
 
         [HttpGet]
         public IActionResult Index([FromQuery]string hash) {
-            /*return new JsonResult(JsonConvert.DeserializeObject(
-                    _trainInfoService.GetTrainInfo(hash)
-                ));*/
             string json = _trainInfoService.GetTrainInfo(hash);
             Train model = new Train(json);
 
@@ -33,10 +30,6 @@ namespace TrainTicketShop.Controllers {
 
         [HttpGet]
         public IActionResult Car([FromQuery]string hash) {
-            /*return new JsonResult(JsonConvert.DeserializeObject(
-                    _carriageInfoService.GetCarriageInfo(hash);
-                ));*/
-
             string json = _carriageInfoService.GetCarriageInfo(hash);
             Carriage carriage = new Carriage(json);
 
@@ -44,11 +37,10 @@ namespace TrainTicketShop.Controllers {
 
             ViewBag.CarriageSchemaSvg = schema.Schema;
 
-
             return View(new CarriageViewModel {
                 Carriage = carriage,
                 CarriageSerialized = JsonConvert.SerializeObject(carriage),
-                Tickets = new List<TicketViewModel>(new TicketViewModel[10]) //todo can be invalid
+                Tickets = new List<TicketViewModel>(new TicketViewModel[10])
             });
         }
     }

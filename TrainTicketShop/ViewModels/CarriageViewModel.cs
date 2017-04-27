@@ -30,7 +30,6 @@ namespace TrainTicketShop.ViewModels
 
     public class CarriageViewModel
     {
-        [Required]
         public string Email { get; set; }
 
         public Carriage Carriage { get; set; }
