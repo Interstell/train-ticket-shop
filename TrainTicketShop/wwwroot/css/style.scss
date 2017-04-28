@@ -257,7 +257,7 @@ body {
 .confirmation-block {
     .block-caption {
         font-size: 40px;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 
     .train-full-info {
@@ -282,5 +282,23 @@ body {
                 font-weight: 700;
             }
         }
+    }
+
+    .timer{
+        font-size: 24px;
+        margin-bottom: 20px;
+        span{
+            font-weight:700;
+        }
+    }
+}
+
+.success-block {
+    .block-caption{
+        margin-bottom: 40px;
+    }
+    .watch-icon{
+        width:32px;
+        height: 32px;
     }
 }

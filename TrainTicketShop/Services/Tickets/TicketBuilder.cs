@@ -75,16 +75,22 @@ namespace TrainTicketShop.Services.Tickets
             Ticket.CarriageNumber = _carriage.Number;
             Ticket.CarriageType = _carriage.Type.Name;
             Ticket.Price = Double.Parse(_carriage.Price, System.Globalization.CultureInfo.InvariantCulture);
+            Ticket.BoughtDate = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
         }
 
         public void CreateHashCode() {
             using (MD5 md5Hash = MD5.Create()) {
-                Ticket.Hash = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(
+                byte[] hash = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(
                         Ticket.TrainNumber + Ticket.TrainDepartureStation + Ticket.TrainArrivalStation
                         + Ticket.TrainPassengerDepartureDate + Ticket.TrainPassengerArrivalDate
                         + Ticket.CarriageNumber + Ticket.SeatNumber + Ticket.Surname + Ticket.Name 
                         + ((DateTimeOffset)DateTime.Now).ToUnixTimeMilliseconds().ToString()
-                    )).ToString();
+                    ));
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hash.Length; i++) {
+                    sb.Append(hash[i].ToString("X2"));
+                }
+                Ticket.Hash = sb.ToString();
             }
         }
     }

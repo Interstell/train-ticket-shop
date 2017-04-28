@@ -8,6 +8,9 @@
     <div class="block-caption display-4">
         Подтверждение оплаты
     </div>
+    <div class="comeback">
+        <a class="btn btn-info" href="/train/car?hash=@Model.Carriage.Hash">← Вернуться к вагону</a>
+    </div>
     <div class="timer">
         <div class="start" style="display:none">@Model.Order.CreationDate.ToString("yyyy-MM-dd HH:mm:ss")</div>
         Бронирование действительно еще: <span></span>
@@ -60,7 +63,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th scope="row">#</th>
                     <th>Имя</th>
                     <th>Фамилия</th>
                     <th>Тип билета</th>
@@ -71,7 +74,7 @@
             <tbody>
                 @for (var i = 0; i < Model.Order.Tickets.Count; i++) {
                     <tr>
-                        <td>@(i+1)</td>
+                        <th>@(i+1)</th>
                         <td>@Model.Order.Tickets[i].Name</td>
                         <td>@Model.Order.Tickets[i].Surname</td>
                         <td>@Model.Order.Tickets[i].PassengerType.GetDisplayName()</td>
@@ -85,10 +88,14 @@
     <div class="text-center confirm-form">
         @{ var total = Model.Order.Tickets.Sum(ticket => ticket.Price); }
         <div class="display-4 total">Итого к оплате: <span>@total.ToString("F2") грн</span></div>
-        <form>
-            <button class="btn btn-lg btn-success">Оплатить</button>
+        <form method="post" action="/order/confirm/" asp-antiforgery="true">
+            @{ var hash = new String(Model.Order.HashCode.ToArray());}
+            <input asp-for="@hash" type="hidden" />
+            <button type="submit" class="btn btn-lg btn-success">Оплатить</button>
         </form>
     </div>
 </div>
 
-@section 
+@section Scripts{
+    <script src="/js/order.js"></script>
+}

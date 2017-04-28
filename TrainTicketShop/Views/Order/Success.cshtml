@@ -1,0 +1,40 @@
+﻿@model TicketOrder
+
+@{ 
+    ViewBag.Title = "Билеты";
+}
+
+
+<div class="success-block container">
+    <div class="block-caption display-4 text-center">
+        Оплата произведена успешно :)
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="row">#</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Тип билета</th>
+                <th>Место</th>
+                <th>Цена, грн</th>
+                <th>Билет</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Tickets.Count; i++) {
+                <tr>
+                    <th>@(i + 1)</th>
+                    <td>@Model.Tickets[i].Name</td>
+                    <td>@Model.Tickets[i].Surname</td>
+                    <td>@Model.Tickets[i].PassengerType.GetDisplayName()</td>
+                    <td>@Model.Tickets[i].SeatNumber</td>
+                    <td>@Model.Tickets[i].Price.ToString("F2")</td>
+                    <td><a target="_blank" href="/order/ticket?hash=@Model.Tickets[i].Hash"><img class="watch-icon" src="/img/eye.png" /></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

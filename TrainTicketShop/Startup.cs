@@ -53,6 +53,10 @@ namespace TrainTicketShop {
 
             services.AddScoped<IRailwayService, RailwayService>();
 
+            services.AddScoped<IOrderCacheService, OrderCacheService>();
+
+            services.AddScoped<ITicketData, TicketData>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -2,5 +2,9 @@
   {
     "outputFile": "wwwroot/css/style.css",
     "inputFile": "wwwroot/css/style.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/ticket.css",
+    "inputFile": "wwwroot/css/ticket.scss"
   }
 ]

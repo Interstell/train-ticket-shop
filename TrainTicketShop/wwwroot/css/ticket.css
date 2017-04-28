@@ -1,0 +1,255 @@
+﻿.uz-ticket * {
+  outline: none; }
+
+.uz-ticket html, .uz-ticket body {
+  height: 100%; }
+
+.uz-ticket body {
+  background: #fff;
+  min-width: 1000px;
+  margin: 0;
+  padding: 0;
+  font: 13px Verdana, Helvetica, sans-serif;
+  color: #000;
+  overflow-y: visible; }
+
+.uz-ticket h1, .uz-ticket h3, .uz-ticket h4, .uz-ticket p {
+  margin: 0;
+  padding: 0; }
+
+.uz-ticket img {
+  border: none; }
+
+.uz-ticket .clear {
+  display: block;
+  clear: both;
+  font-size: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  line-height: 0; }
+
+.uz-ticket .center {
+  text-align: center; }
+
+.uz-ticket .bold {
+  font-weight: bold; }
+
+.uz-ticket .nowrap {
+  white-space: nowrap; }
+
+.uz-ticket #middle {
+  min-height: 100%; }
+
+.uz-ticket #middle > div {
+  min-height: 0;
+  background: none;
+  border: none; }
+
+.uz-ticket #middle > div > div, .uz-ticket #content {
+  margin: 0 auto; }
+
+.uz-ticket #middle > div > div {
+  width: 1000px;
+  margin: 0 auto;
+  background: none;
+  padding: 0; }
+
+.uz-ticket #content {
+  background: none;
+  width: 998px;
+  min-height: 480px;
+  padding: 0; }
+
+.uz-ticket .arial, .uz-ticket .uid {
+  font-family: arial, sans-serif;
+  font-size: 16px; }
+
+.uz-ticket .v-top {
+  vertical-align: top; }
+
+.uz-ticket .align-right {
+  text-align: right; }
+
+.uz-ticket .w1 {
+  width: 1%; }
+
+.uz-ticket .w-right {
+  width: 160px; }
+
+.uz-ticket .upper {
+  text-transform: uppercase; }
+
+.uz-ticket .uid {
+  font-size: 28px;
+  white-space: nowrap; }
+
+.uz-ticket .order_num {
+  font-size: 21px;
+  font-weight: bold; }
+
+.uz-ticket .address {
+  font: 13px 'Times New Roman', Times, serif; }
+
+.uz-ticket .ticket_info {
+  font-weight: bold;
+  font-size: 17px; }
+
+.uz-ticket #content .result h2 {
+  font-size: 36px;
+  margin: 20px 0; }
+
+.uz-ticket #content .better_print {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px 0;
+  text-align: center; }
+
+.uz-ticket #content .controls {
+  text-align: center; }
+
+.uz-ticket #content .controls button {
+  font-size: 22px;
+  padding: 5px 20px;
+  margin-left: 20px; }
+
+.uz-ticket .cheque {
+  padding-bottom: 20px; }
+
+.uz-ticket .cheque .text h3, .uz-ticket .cheque .text p, .uz-ticket .cheque-text {
+  text-indent: 30px;
+  text-align: justify; }
+
+.uz-ticket .cheque .text p {
+  font-size: 18px;
+  margin: 5px 0 10px;
+  line-height: 1.5; }
+
+.uz-ticket .cheque .text h3, .uz-ticket .cheque-text {
+  font-size: 28px;
+  margin: 20px 0; }
+
+.uz-ticket .cheque .text b {
+  font-size: 24px; }
+
+.uz-ticket .cheque .blank {
+  border-top: 1px dashed;
+  border-bottom: 1px dashed;
+  padding: 10px; }
+
+.uz-ticket .cheque .blank .header {
+  font-weight: bold;
+  font-size: 34px; }
+
+.uz-ticket .cheque .blank .orderDate {
+  font-size: 14px; }
+
+.uz-ticket .cheque .blank .barcode {
+  padding-bottom: 5px; }
+
+.uz-ticket .cheque .blank table {
+  width: 100%;
+  background: #fff;
+  border-collapse: collapse; }
+
+.uz-ticket .cheque .blank table tr {
+  background: #fff; }
+
+.uz-ticket .cheque .blank table td, .uz-ticket .cheque .blank table th {
+  padding: 2px 5px;
+  border: 1px solid;
+  box-sizing: border-box; }
+
+.uz-ticket .cheque .blank table th {
+  text-align: left; }
+
+.uz-ticket .cheque .blank table.info th {
+  font-weight: normal;
+  width: 225px; }
+
+.uz-ticket .cheque .blank table.info td, .uz-ticket .cheque .blank table.places th {
+  font-weight: bold;
+  font-size: 15px; }
+
+.uz-ticket .cheque .blank .places {
+  margin-top: 10px; }
+
+.uz-ticket .cheque .blank .places span {
+  font-weight: normal; }
+
+.uz-ticket .cheque .blank .prices {
+  padding: 5px 0 10px; }
+
+.uz-ticket .cheque .blank .price_info {
+  border: 0;
+  border-collapse: collapse; }
+
+.uz-ticket .cheque .prices h4 {
+  font-size: 14px; }
+
+.uz-ticket .cheque .electronic {
+  font-family: "Courier New", monospace;
+  font-size: 16px; }
+
+.uz-ticket .cheque .electronic .info p {
+  font-size: 15px;
+  font-weight: bold;
+  padding-left: 1em; }
+
+.uz-ticket .cheque .electronic table {
+  table-layout: fixed; }
+
+.uz-ticket .cheque .electronic table tr.sizing td {
+  border: none;
+  padding: 0; }
+
+.uz-ticket .cheque .electronic .barcode {
+  padding: 5px 0 0; }
+
+.uz-ticket .cheque .blank .ch-num-l {
+  white-space: nowrap;
+  border-right: none; }
+
+.uz-ticket .cheque .blank .ch-num {
+  white-space: nowrap;
+  border-left: none; }
+
+.uz-ticket .cheque .blank.electronic .ch-num {
+  /*width: 1px;*/
+  text-align: right; }
+
+.uz-ticket .cheque .blank.electronic .frow {
+  height: 42px; }
+
+.uz-ticket #content .return-mrg {
+  margin-bottom: 20px; }
+
+.uz-ticket .hostName {
+  display: none; }
+
+.uz-ticket .result_auth > div {
+  margin: 1em; }
+
+@media print {
+  @page {
+    .uz-ticket {
+      margin: 1cm .5cm; } }
+  .uz-ticket body {
+    background: #fff;
+    overflow-y: visible; }
+  .uz-ticket #middle > div {
+    min-height: 0;
+    background: none;
+    border: none; }
+  .uz-ticket #middle > div > div, .uz-ticket #content {
+    margin: 0 auto;
+    background: none;
+    padding: 0; }
+  .uz-ticket #header, .uz-ticket #footer, .uz-ticket #helloUser, .uz-ticket .result, .uz-ticket .controls, .uz-ticket .version, .uz-ticket .no_print, .uz-ticket #content > div > p {
+    display: none; }
+  .uz-ticket .cheque .page-break {
+    page-break-after: always; }
+  .uz-ticket .testMode .hostName {
+    display: block; } }
+

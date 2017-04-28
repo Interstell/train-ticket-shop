@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,11 +8,19 @@ namespace TrainTicketShop.Entities
 {
     public class Ticket
     {
+        [Required]
+        public int Id { get; set; }
+
+        [Required]
         public string Email { get; set; } 
 
-        public string Name { get; set; } 
-        public string Surname { get; set; } 
-        public int SeatNumber { get; set; }  
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public string Surname { get; set; }
+        [Required]
+        public int SeatNumber { get; set; }
+        [Required]
         public PassengerType PassengerType { get; set; } 
 
         public string BirthDate { get; set; } 
@@ -33,11 +42,17 @@ namespace TrainTicketShop.Entities
         public string TrainPassengerArrivalStation { get; set; }
         public int TrainPassengerArrivalStationId { get; set; }
 
+        [Required]
         public string CarriageNumber { get; set; }
+        [Required]
         public string CarriageType { get; set; }
+        [Required]
         public double Price { get; set; }
 
+        [Required]
         public string Hash { get; set; }
+        [Required]
+        public string BoughtDate { get; set; }
 
     }
 }

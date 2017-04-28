@@ -271,3 +271,4 @@ __pycache__/
 */wwwroot/lib
 */pb_session_id.json
 QueryExamples/
+appsettings.json

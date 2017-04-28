@@ -8,9 +8,10 @@ using TrainTicketShop.Entities;
 namespace TrainTicketShop.Migrations
 {
     [DbContext(typeof(TrainTicketShopDbContext))]
-    partial class TrainTicketShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170428203908_TicketAdded")]
+    partial class TicketAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")

@@ -17,8 +17,10 @@
     <Content Include="wwwroot\css\style.css" />
     <Content Include="wwwroot\css\style.css.map" />
     <Content Include="wwwroot\css\style.scss" />
+    <Content Include="wwwroot\css\ticket.scss" />
     <Content Include="wwwroot\img\switch.png" />
     <Content Include="wwwroot\js\carriage.js" />
+    <Content Include="wwwroot\js\order.js" />
     <Content Include="wwwroot\js\search.js" />
   </ItemGroup>
 

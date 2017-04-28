@@ -1,0 +1,132 @@
+﻿@model Ticket
+
+@{ 
+    ViewBag.Title = "Билет";
+}
+
+<div class="uz-ticket container">
+    <div id="middle">
+        <div>
+            <div>
+                <div id="content">
+                    <div class="cheque">
+                        <div class="text">
+                            <h3>
+                                Посадочный документ
+                            </h3>
+                        </div>
+                        <div class="blank electronic" data-doctype="travel">
+                            <table>
+                                <tr class="sizing">
+                                    <td style="width: 91px"></td>
+                                    <td style="width: 54px"></td>
+                                    <td style="width: 79px"></td>
+                                    <td style="width: 135px"></td>
+                                    <td style="width: 245px"></td>
+                                    <td style="width: 142px"></td>
+                                    <td style="width: 171px"></td>
+                                </tr>
+                                <tr class="frow">
+                                    <td class="nowrap" rowspan="2">
+                                        TEРM.№61
+                                    </td>
+                                    <td class="bold arial v-top" colspan="3">
+                                        ПОСАДОЧНИЙ ДОКУМЕНТ
+                                    </td>
+                                    <td class="bold nowrap" colspan="2">000B3AFB-<span class="uid">E7F8-465B-0001</span></td>
+                                    <td class="bold arial w-right" rowspan="2">
+                                        ПН:400758126555<br />
+                                        ФН:3000182017<br />
+                                        ЗН:ЗТ00000002<br />
+                                        ФК:9789205
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="address v-top nowrap" colspan="3">
+                                        ПАТ "УКРЗАЛІЗНИЦЯ"<br />м.Київ, вул.Тверська, буд.5
+                                    </td>
+                                    <td class="v-top order_num" colspan="2">#69Ц-Н1-2664121-0102</td>
+                                </tr>
+                                <tr>
+                                    <td>МПС</td>
+                                    <td class="bold arial center" colspan="5">
+                                        ЦЕЙ ПОСАДОЧНИЙ ДОКУМЕНТ Є ПІДСТАВОЮ ДЛЯ ПРОЇЗДУ
+                                    </td>
+                                    <td class="align-right nowrap">@Model.BoughtDate</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Прізвище, Ім’я</td>
+                                    <td colspan="2">@Model.Surname @Model.Name</td>
+                                    <td>Поїзд</td>
+                                    <td class="align-right ticket_info w-right">
+                                        @Model.TrainNumber ПБ
+                                        @Model.TrainCategory НШ
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="nowrap w1" colspan="2">Відправлення</td>
+                                    <td class="w1">@Model.TrainDepartureStationId.ToString().PadLeft(7,'0')</td>
+                                    <td class="upper ticket_info" colspan="2">@Model.TrainDepartureStation</td>
+                                    <td>Вагон</td>
+                                    <td class="align-right ticket_info">@Model.CarriageNumber</td>
+                                </tr>
+                                <tr>
+                                    <td class="nowrap" colspan="2">Призначення</td>
+                                    <td>@Model.TrainArrivalStationId.ToString().PadLeft(7, '0')</td>
+                                    <td class="upper ticket_info" colspan="2">@Model.TrainArrivalStation</td>
+                                    <td>Місце</td>
+                                    @{var ticketType = ((int)(Model.PassengerType) > 0) ? "Пільговий" : ""; }
+                                    <td class="align-right ticket_info">@Model.SeatNumber @ticketType</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Дата/час відпр.</td>
+                                    <td class="ticket_info" colspan="2">@Model.TrainPassengerDepartureDate</td>
+                                    <td>Сервіс</td>
+                                    <td class="align-right">БІЛ</td>
+                                </tr>
+                                <tr>
+                                    <td class="ch-num-l" colspan="2">Дата/час приб.</td>
+                                    <td class="ch-num"></td>
+                                    <td class="ticket_info" colspan="2">@Model.TrainPassengerArrivalDate</td>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="7">
+                                        ВАРТ=<b>@Model.Price.ToString("F2")ГРН</b>(КВ.16,00+ПЛ.34,09+СП.15,00+ПДВ.15,44+СТР.0,10+КЗБ.12,08)<br />
+                                        В Т.Ч.
+                                        БІЛ-18,00
+                                        (З ПДВ)<br />
+                                        @if(Model.PassengerType == PassengerType.Student) {
+                                            <span>ДОКУМЕНТ ПІЛЬГОВИКА: ПІЛЬГ СТУД @Model.StudentsCardId<br /></span>
+                                        }
+                                        @if (Model.PassengerType == PassengerType.Kid) {
+                                            <span>ДОКУМЕНТ ПІЛЬГОВИКА: СВІД НАР @Model.BirthDate<br /></span>
+                                        }
+
+                                        #СТР.ВІД Н/В 6000НЕОП.МІН. ТДВ"СТ", ДОМІНАНТА"КИЇВ,САКСАГАНСЬКОГО,119, T800507017<br />
+                                        <b>ЧАС ВІДПРАВЛЕННЯ КИЇВСЬКИЙ</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="center" colspan="3">
+                                        <img alt="QR" src="data:image/gif;base64,R0lGODdh5ADkAHcAACwAAAAA5ADkAIcAAAD///8AF0wAHuwAB6AAMwwZAAAY8Jj///wAAAIY8GTME10Y8DgaCpwAAAAY8FTK6fYZF0wVAAgAAAAY8LwAAAIY8LgVAAgAAAD94AD90AAAAAAY8IBiV1hiWWoBAMqFAA8AAAABAMoAAAAAAAEAAAAY8JBiWMUBAMoBAACP2yBQqyUBAMoAAwAAAABirZ5irSMBDiMAAAAAAACPAnAAAAAAACgAAAAAAAAY8PyPApgY9KhirYAAAAAAAAAAAAAY9BQAACgAAACPAnAAAACsAAAFEIaPAnAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/gAAH+cAACgtMAAAH+gAMSgAVAACMCgAACcOnAAA/gAAH+cAACgtMAAAH+gAMSgAVAAGWMY8uQACMCgAACcAEAAA/gAAH+cAACgtMAAAH+gAMSgAVAAIKkY8xTLi8igAACcAEAAAACgAAAAAACcAEAAAAAAGWOIk9qgtMCgAMSfZsgAAwCgAAAAAACcAEAY9AzLOL6gATjLOJqIlAoAAACgAAADCCBisoqPApgY9KhiVOliUIpQ+p2YCEAAAAZRDP4Y9eCYCEAAAAEY84RibJoFEIYAAFQY9GgY9KgY9EBQ7dUFEIYAAFQY9GhQ7d0AAAAAAACZasgAAAIAABBAfVAY89hAfV8Y89AY9eCYCEAAAAGYCEAY8/Bclz4Y8/xAfQEY8/CYCEAI/wABCBxIsKBBgwESEkzIsKHDhw8PFoRIkaHEigoHYgywMKLGjRs/ZkQ4EgDFgw0lqlzJsqVAiyJBhmQp0+FFjB0r5kwZs6bNlzBJcuwZdKfLo0hXFvU5UynToUJPEv0JlKrJp1R5Ct2p1WjSr2CXYoXYEutNnVO7kk3rM+ZZrkXdgnX6FC7UiSXtnu26N+5UvWH94kUbla1gtXWjtv2LMi9jxY4h3wVcle9Ry4OlFq6s2StnmY0Tf54ssm/kq1ZNkx5NOSlmu6+1ggx916zk2Y8Hq95N06Pk1khfG16NGiruzLBxblaJuLby0cbXIqctvbht5mIJW3++nTjtnGUjC/+vDH447LTfqfvuvhh7yabsq1fv/f50+enunevvrLmz3NvZjUXffvLVBBxd+oW32njF3Rdffb75R556Vo0lmGcPEsjdfAg6+NZye3n4n4UG5oZZcwuSGNuFoWEYoIhbgZheVSFCpyKKL4J44o2nMehgcy7aV5qMOvYYFI8brrcjhCnyWKNLOdL4H2oKzvgklRQGWaGS3B04F34ZMtgfi9DBqBuRYF5YIJMBtrmel19O2Z5q0QnJnpkwipkdbxOyZmKXucWZZon5yUbmnUPSZaWVanLJ5qMaphaooHISSueUFCZIX6bwcSilosPd+GOSkErYIICA2lhqqgJO+ql7ySH/Oap2OLJ62HWZrTlnqLo26l2iYao4K39uaoepqsaax6ukwTq64q+vIknrqkzGyuySTNFZLHyUAgtkpfsNK663e4Kr5bnmpttnt+xGieW67sZbLbkQogvvvNGWe2+47PYrL7/51qvuqQFruq+9BL+b8L8Y9isowwN/e3DE+i6Mr8ISWwwwxodeJq2nHJN4bK6ecttiYBGWvKa1H8t6MrLH6WlrsjF+NeabZdLb8s6+styUzDSbXLNr0plKbKTCeuyogrUijV6HwDqcpdLZjlhslTavPODVTyOaH55SdxccroZCijXRS29tdtemIhw2ydD67Cy4PnZ8G9h+5u112wO//w0np6TWGenZx/GZMMpxd22t3BsvmziaPo7s2a6/SU712DhnyHjDMNsNueeHL0c53Jyj/bjXizte+uhMLwr1153bqevDoBsdeKe3goa467D3DjLIu9Oue5h0j35z4+sySmjMmYvdLujapvxc04Wz7a7l+zI/ffPAZ20n0z+HT23QRV+ffJHDa/9s5FBCD3hW4iMt9PGrH0p9+dtvORLrwg+uuLI5I14Am9WkArbmePGbnKX8xbUBAnBv8btf5rB1QPypT4HDc1jTzoMqp8FMccbLnf8C2B72+Y1nH0JQA8H0v4l1sFWvip7fqCatFBZqbZ+bYMUYN6eOpWqGL8QV3v+cp7f66VBgQRSNwmQIRLU56WU3HCELHehCuIkqau/blqXKRj7Z3e6LzNKcq1gWqgFl6oFJ61P1zmdFLTrrd2B0Ivx+ODIEvlGJXLSdF6eVQaGJsYgvLOPrOPhHAs7ug2hKXezkZyQ+As2Ozasj/sB3RJqVzox/EhkblwhFDOqPdXnMHSWv5UfsXalX13nW2fBzNFAeSWVxm18pNzlIVIpGlZuaUSsXaLUjjhJbfKNl74hoSAva8Ji9/CQv1QhLFDmRkFdqYRQhyciqDUo87mujCKcmTGIGM3Sok6MFJWhNLRkwTmsE5yGjCE3efXNzA6wh+s75pXQC83s0dCM9iSn/xwpiU3rE6Z7GqAfCO74zn+NTXhjPmMkCctFwCiVoPA0qUMwps5J/u1tDGQpOfs5zWwW96EHbR9FtjpGj3hThQ7l5SoqGVIKXfKA4XUrFYUqypJocqCz3qD/eKfKXthScCSmo0UWWUJ9EnWae7EfHJHownIO8qUivqNOZQetoPpWpCsEo1NqZ1Io8XB5Sv3qpRI20pfg0KvcMOkqLrpSNfnyrNg121oi6VYn+rFski+rMDj5pfVqDquli6lQ4irStCBWcEdsm15++cq+tM2VYw2hLxJJ0jsgrpCejR9dlphSyeX2mKXu4xe8Z9oINdVnlamq4R14si2NFIjthu78V/+6stRXd6FYzC89FDvG0CUxtBh2LUynqEbPEHW5UE1lLmgrQo8jKa2WlST80ejar3YwoSBEJ3UIG1bbNlCvulGtT5g4zqILs7njJKV2VPraavY1seeX7WczezJwRFGgo01rWgiXVu1ytGDVDe16xNpVgdS1qyEiZUOvykZC7fO011ffN/Z4Opdud8Hcb7N/3bhB75LQw0KR5V9keN7kR7qn12HqsD8N1w/DdbV+ja16w+pW2hUOvhiWMuvXqN3A/lSx1fyhPvUnIxeqEcZBvnL1mltiha32ikTmE5HtyWLNMriqDT3dc4Oa0vuyD4YxRjMm5hphnUapwgGfG2eq+2P+RZY4vmktbW8j6eJm+suaYHXxV9zpyznBmLZ9D+Entps23ybwzf3246OkimsYFi9VikytnD3MVc6vsp3D/fGgtm8/TAqZzVznd6FiW+rCqczB+C/3RTpO2zjnObQw7KeP2kjpjtVp1F5E7Rll3NMNULeZT9wwqEl6M0LwGpLKjqTMRi/rZ7yXsmYy9MWSLN8pD7dmKLTRZCH/ahvctnlWvTVnQSg7YaRS2t3kM7kmy1LXcnqnBNDbZPvPUp0fFlxB1O819Zxliar33cn9tYID5u77y5p+qKYbXGv+3tzM++DrbfN2FVxGGzJ4iwdOXZtUi/NFJbqQJCTxhx2F1yP//DCh/X9rxPpI1o7N9s8HTneFJ0/qXJH/1PmGO25R7EuM1lyoycf68Wzs65Cr2nn29OlV9zuXIvpZ3pVlt41lf1sIlRnHUW5jgfo+vyn6e95NJ/O41X5jrW/d6NcGe8oyNXdCrBbAlNT31Vho6xk3msaJTvMoRy/jbIF/v3cnMb63HMZfdhDex6z5xceNdy4uFMZLbLXC1E1bnjc/749kO5aazuNgdHS2Q57vgISbcmFKdeGwXCvqnkzXPiQR4PVP5acE3u+Kw6p9CmY3LKrr+lrUffYfJm+ngXZP32vY94vKdWdsPP53FV/ruXbf4uArfoiTnLESTaet9Ot3xwbek//OxX/j3bZ+ZOBQsrq9/fa1COvQFprr2WbrZTXv/yjA96cD73v7sMdDz8ud40tY/K0R+3kN4JVd0Z6Z34LVySleAl4MyCGhO/7eAzdeAZ2c6EHhZvzeBdFOBq2dzU+aAaLNuhHFyyod+sdYylLdlHZh6OwR61IR1OmMmzgaAGDcsD6c0kReDuUdtJxhY9KZL0CZl06Z+2VR6CsZ0JjhgNYhFKrh36aaDL8eDMChbp+dzgTRRKoeDTKVvO2VcrydyH/g6yJZFIdVz0FeGz6VrIshJKihtN7iDz4WCpJNq8TdqLlh+KYhggBeFVoWGXKiGszRQ6eWGQgeFfshuiSZyIf+4hT32ZXMYfmtHNuYGd9MGWF8XdjQYcBEnancXbL52VtFWduRFYau3TjoXijR3iYKVQieWWBwFdLjHeUq2fJuIUY8Ri1cXdib3iHn4fe+Xdb+ohXnDi0RXdbRIfAI4aK7YfWFIGchId01YhGqWflJIgmCGZw20jHoVbyO4dOm3ZKCGjT5oZqUIiOVUUa04VSzniLr4fqpnWgX3c3gEWu0oUZFYbrtmeNVGjxwHhuDYXfWGgZ2oXoHojP9oagE5c6iWeERmaS53inmWinNTY2r4ZJ8Hf1imjitoTxWZi3aHkabIZRO5eOS4iOvIjfBYiYGmcZbFkXKTfeZHhPdIkS3/WZAMqI2Z53UpmW1P1USTp5A0yV3VaIzwZ32l1k4zNJTyuJFWtmUHyYY1SZLP10TN+G9QyYm+WFPE9omN9IbkZoH1t2yvdn4fF47nBmtleYT/NZbAqJJwcpb0V3iqmHxg2YVimY7b+JJOSUA2iG3/kpew2HJ6mYhxaH93OY54CIcIKX+LeZi9uJJtx5fz+JAQtJV+KYxu6W+MNpBRmZWQZ3/vuHmWGZEuyWBAdZKziIG2dpRiuJlXRoU4uZof2ZrmmJv6yHd8Bn7JJ2xNQnE8WSqNuX6V15dddo4pKXpzB3KYtm3j94ej6ZyDKHX7537x9ZxAGJ2MqHnZWZ1/d5xV/ymcGbhgk3hs3TmdgLmEAHmN9uaeIbmQKeaEMBmfPYiUU+mVBvlYaHmZ8zlOVWh1acmUhqif8Yiciuhl8il5ErlzCXqRVUeBBrqH4Vg2MWl6ThVndhWekomOAOV2V/iR7fmbGmlnX8hb2BmfqIiFIXpnF6qIWfiecaZ4JFqMehiYlXmSIxqWuNicHImSKdqSKyp2Lbpmv7c+PcpYECqhMcdKEreTJikkI9dr2eRKAeh/u/VXT3qBp3adWYpd5JmR8yRaorOlb6ihMEmmaap2msilKGqWDaqUZ+qlb/eAx9lYzcV6EYpjOrZxfwkXdaqBd8qXM+qK8HmTyXaHywaosv/Yo4XKlhG4qArGp87VpjxnqGlHkFgqk6JJjZTqjpt0dKZBoDlYWOFVXDqpp2TEV5TIikFpozGanACYqkC5a2PpTm5Eqgdno1HJmUVmm52nWIipa4N5ooUod3boZj+KbSiXmhhWcX9KnVr5YNsmh8w6od+5j2uonjhmm5RWrcyJpNjamKUZTNG6nhz6rUBorfx4o61mq3GZZVNXb7RZfT8GUOy6mxuIrFzZhStIr7d3pa8IrhAJqtxKlPJanCJpnCO5p6yann36l4o2nvMKqwFrryaKr+GKboz5lOJYnlS5sYKZk2TnkbeoeVTVppkasgWrpO0adGWqo0uKQqHKjBz/OKwUS6UGq6UyC5m3VbPbSl90+JMj+6oxK6Iz+7N+CpBE266HCJ1JaG0NilJUK62OCUVKKa5tCLXDiZMfW7UOi65HiHgd+Zh6GJqYGKYPK5XG2q+9F6gqypndip3W6Z11GbZvw3RJN1fLGXgHNn92G3dgm7enBqIee6hG17UNa7Ztq40S2KgCmo3vKblH6p/2WWtYCZyeJadcG6wne7DzRZiKubAsmLNXOaGU26kDJ7oVWlyABrid+aFu66v7iqsCGZv/CWhC+pv0yXhJq6rDCpf4Z7N2SpnCmpgmO4bDdqqkK7AM+7clepubmpfIyLFs27wYO2+4J6jGy4bU62QX/9usFtiTz+uj3LuK02uY1UucqGuRzhtqSNuztfqZqDU047eWXviS5um62Nu3isqmhHqxrVqSlmhiZue+j6emartxHgi04/u7/tiTxKqcOiuxz6jAeGjBwJuwyzq8DGmpFZyE/VmPIay44BuMnTbCmMlzxJihgfu/0Qum7AWjJSxFLIxQC6zBUzqMLYujwVquqBmliHt//kq/huklfhe5Xamtm6u390qhjsmOEOqUSRzFS5y7LivET/yWJPulyAtdVQx7a/vA/hrDmHt8d/u/wuugaNyHQ6t7q3uOClrFrhqEbzqEbhyglELHefyyGSujFquE8ec2OKuAaIrHMEy3PXwcyNLJsD4Mpkd6yIbLuH/8qHrWv09oeTa5t6XqoXd8hjeXyJ8BsJGWrptcvsSLvgCMlL81sqQsyLBrjwbccJ6cr9EYynO5wSTVtO4Kp8tLyyVIsCqprP77f7xcmi14nrqczKcJa8SsyBo0m43YsfvrzNtLtso6h/gbTAEBADs=" />
+                                    </td>
+                                    <td colspan="4" class="info arial">
+                                        <p>Цей Посадочний документ є підставою для проїзду без звернення у касу. Посадочний документ являється розрахунковим документом.</p>
+                                        <p>Повернення даного Посадочного документа можливе до відправлення поїзда.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="clear"></div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
