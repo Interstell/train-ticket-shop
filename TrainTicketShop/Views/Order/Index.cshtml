@@ -1,1 +1,94 @@
-﻿<h1>Hello</h1>
+﻿@model ConfirmationViewModel
+
+@{
+    ViewBag.Title = "Подтверждение оплаты";
+}
+
+<div class="confirmation-block container">
+    <div class="block-caption display-4">
+        Подтверждение оплаты
+    </div>
+    <div class="timer">
+        <div class="start" style="display:none">@Model.Order.CreationDate.ToString("yyyy-MM-dd HH:mm:ss")</div>
+        Бронирование действительно еще: <span></span>
+    </div>
+    <div class="train-full-info card card-outline-info">
+        <div class="row">
+            <div class="train-number col-md-2 text-center">
+                <span>@Model.Train.Number</span>
+            </div>
+            <div class="train-name col-md-4">
+                @Model.Train.DepartureStation.Name →<br />
+                @Model.Train.ArrivalStation.Name
+            </div>
+            <div class="train-time-info col-md-6">
+                <div class="date">
+                    @{ var departureDateTime = DateTime.ParseExact(Model.Train.PassengerDepartureDate, "yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);}
+                    <span>@departureDateTime.ToString("dd.MM.yyy")</span>
+                </div>
+                <div class="departure">
+                    отправление <span>@departureDateTime.ToString("dd.MM.yyyy")</span>
+                </div>
+                @{ var arrivalDateTime = DateTime.ParseExact(Model.Train.PassengerArrivalDate, "yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);}
+                <div class="arrival">
+                    прибытие <span>@arrivalDateTime.ToString("HH:mm")</span>
+                </div>
+                @{ var hours = (int)(Model.Train.TravelTime / 60);
+                    var minutes = Model.Train.TravelTime - hours * 60;}
+                <div class="trip-time">
+                    В пути <span>@hours ч @minutes м</span>
+                </div>
+            </div>
+        </div>
+        <div class="carriage-info col-md-6 push-md-6">
+            <div class="row">
+                <div class="price col-md-4">
+                    Цена: <span>@Model.Carriage.Price грн</span> 
+                </div>
+                <div class="carriage-number col-md-4">
+                    Номер вагона: <span>@Model.Carriage.Number</span>
+                </div>
+                <div class="carriage-type col-md-4">
+                    Тип вагона: <span>@Model.Carriage.Type.Name</span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="tickets">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Тип билета</th>
+                    <th>Место</th>
+                    <th>Цена, грн</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.Order.Tickets.Count; i++) {
+                    <tr>
+                        <td>@(i+1)</td>
+                        <td>@Model.Order.Tickets[i].Name</td>
+                        <td>@Model.Order.Tickets[i].Surname</td>
+                        <td>@Model.Order.Tickets[i].PassengerType.GetDisplayName()</td>
+                        <td>@Model.Order.Tickets[i].SeatNumber</td>
+                        <td>@Model.Order.Tickets[i].Price.ToString("F2")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center confirm-form">
+        @{ var total = Model.Order.Tickets.Sum(ticket => ticket.Price); }
+        <div class="display-4 total">Итого к оплате: <span>@total.ToString("F2") грн</span></div>
+        <form>
+            <button class="btn btn-lg btn-success">Оплатить</button>
+        </form>
+    </div>
+</div>
+
+@section 

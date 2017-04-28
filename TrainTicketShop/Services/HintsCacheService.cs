@@ -7,7 +7,6 @@ namespace TrainTicketShop.Services {
         void Set(string key, string value);
     }
 
-
     public class HintsCacheService : IHintsCacheService
     {
         private ConnectionMultiplexer _redis;

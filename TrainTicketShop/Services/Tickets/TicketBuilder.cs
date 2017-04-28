@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using TrainTicketShop.Entities;
 using TrainTicketShop.ViewModels;
@@ -14,6 +16,7 @@ namespace TrainTicketShop.Services.Tickets
         void FillPassengerInfo();
         void FillTrainInfo();
         void FillCarriageInfo();
+        void CreateHashCode();
 
         Ticket Ticket { get; }
     }
@@ -71,9 +74,18 @@ namespace TrainTicketShop.Services.Tickets
         public void FillCarriageInfo() {
             Ticket.CarriageNumber = _carriage.Number;
             Ticket.CarriageType = _carriage.Type.Name;
-            Ticket.Price = _carriage.Price;
+            Ticket.Price = Double.Parse(_carriage.Price, System.Globalization.CultureInfo.InvariantCulture);
         }
 
-
+        public void CreateHashCode() {
+            using (MD5 md5Hash = MD5.Create()) {
+                Ticket.Hash = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(
+                        Ticket.TrainNumber + Ticket.TrainDepartureStation + Ticket.TrainArrivalStation
+                        + Ticket.TrainPassengerDepartureDate + Ticket.TrainPassengerArrivalDate
+                        + Ticket.CarriageNumber + Ticket.SeatNumber + Ticket.Surname + Ticket.Name 
+                        + ((DateTimeOffset)DateTime.Now).ToUnixTimeMilliseconds().ToString()
+                    )).ToString();
+            }
+        }
     }
 }

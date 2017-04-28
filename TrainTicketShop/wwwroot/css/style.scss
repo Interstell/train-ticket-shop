@@ -253,3 +253,34 @@ body {
         }
     }
 }
+
+.confirmation-block {
+    .block-caption {
+        font-size: 40px;
+        margin-bottom: 40px;
+    }
+
+    .train-full-info {
+        padding: 20px 0;
+
+        .carriage-info span {
+            font-weight: 700;
+        }
+    }
+
+    .tickets {
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
+
+    .confirm-form{
+        margin-bottom: 50px;
+        .total{
+            font-size: 30px;
+            margin-bottom: 20px;
+            span{
+                font-weight: 700;
+            }
+        }
+    }
+}

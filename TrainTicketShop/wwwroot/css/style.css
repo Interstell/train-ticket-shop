@@ -156,3 +156,24 @@
   .car-full-info .passengers-block .additional-info {
     display: none; }
 
+.confirmation-block .block-caption {
+  font-size: 40px;
+  margin-bottom: 40px; }
+
+.confirmation-block .train-full-info {
+  padding: 20px 0; }
+  .confirmation-block .train-full-info .carriage-info span {
+    font-weight: 700; }
+
+.confirmation-block .tickets {
+  margin-top: 40px;
+  margin-bottom: 30px; }
+
+.confirmation-block .confirm-form {
+  margin-bottom: 50px; }
+  .confirmation-block .confirm-form .total {
+    font-size: 30px;
+    margin-bottom: 20px; }
+    .confirmation-block .confirm-form .total span {
+      font-weight: 700; }
+

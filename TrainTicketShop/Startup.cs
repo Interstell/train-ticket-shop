@@ -40,9 +40,9 @@ namespace TrainTicketShop {
             services.AddSingleton(new HttpClient(new HttpClientHandler {
                 UseProxy = false
             }));
-            services.AddScoped<SearchHintsService>();
+            services.AddScoped<ISearchHintsService, SearchHintsService>();
             services.AddSingleton(ConnectionMultiplexer.Connect(Configuration.GetConnectionString("Redis")));
-            services.AddScoped<HintsCacheService>();
+            services.AddScoped<IHintsCacheService, HintsCacheService>();
 
             services.AddSingleton<ISessionIdService, PbSessionIdService>();
             services.AddScoped<ISearchTrainService, SearchTrainService>();

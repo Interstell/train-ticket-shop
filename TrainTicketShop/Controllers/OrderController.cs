@@ -10,6 +10,7 @@ using TrainTicketShop.ViewModels;
 
 namespace TrainTicketShop.Controllers {
     public class OrderController : Controller {
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Index(CarriageViewModel model) {
@@ -21,16 +22,30 @@ namespace TrainTicketShop.Controllers {
                 ConstructTicket(builder);
                 tickets.Add(builder.Ticket);
             }
-            return View();
+            TicketOrder order = new TicketOrder() {
+                Tickets = tickets,
+                Email = model.Email,
+                CreationDate = DateTime.Now
+            };
+            order.SetHashCode();
+
+            return View(new ConfirmationViewModel {
+                Order = order,
+                Train = model.Carriage.Train,
+                Carriage = model.Carriage
+            });
 
         }
 
-        private Ticket ConstructTicket(ITicketBuilder builder) {
+        private void ConstructTicket(ITicketBuilder builder) {
             builder.ChooseStrategy();
+            builder.FillCarriageInfo();
             builder.FillPassengerInfo();
             builder.FillTrainInfo();
-            builder.FillCarriageInfo();
-            return builder.Ticket;
+            builder.CreateHashCode();
         }
+
+        
     }
+
 }

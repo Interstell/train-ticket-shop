@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TrainTicketShop.Entities;
 using TrainTicketShop.ViewModels;
@@ -42,6 +43,10 @@ namespace TrainTicketShop.Services.Tickets
         public override void FillTicketWithData() {
             base.FillTicketWithData();
             _ticket.StudentsCardId = _ticketVM.StudentsCardId;
+            if (Regex.IsMatch(_ticket.StudentsCardId, @"[А-Я]{2}\d{8}") 
+                && _ticket.CarriageType == "плацкарт" || _ticket.CarriageType == "сидячий 2 класс") {
+                _ticket.Price *= 0.5;
+            }
         }
     }
 
@@ -52,6 +57,16 @@ namespace TrainTicketShop.Services.Tickets
         public override void FillTicketWithData() {
             base.FillTicketWithData();
             _ticket.BirthDate = _ticketVM.BirthDate;
+            var now = DateTime.Now;
+            var sixYears = now.AddYears(-6);
+            var fourteenYears = now.AddYears(-14);
+            var birthDate = DateTime.ParseExact(_ticket.BirthDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            if (birthDate > fourteenYears && birthDate < sixYears) {
+                _ticket.Price *= 0.25;
+            }
+            else if (birthDate > sixYears) {
+                _ticket.Price = 0;
+            }
         }
     }
 }

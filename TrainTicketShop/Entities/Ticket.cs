@@ -33,10 +33,11 @@ namespace TrainTicketShop.Entities
         public string TrainPassengerArrivalStation { get; set; }
         public int TrainPassengerArrivalStationId { get; set; }
 
-
         public string CarriageNumber { get; set; }
         public string CarriageType { get; set; }
-        public string Price { get; set; }
+        public double Price { get; set; }
+
+        public string Hash { get; set; }
 
     }
 }
