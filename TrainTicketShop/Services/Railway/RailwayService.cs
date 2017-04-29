@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace TrainTicketShop.Services.Railway
+﻿namespace TrainTicketShop.Services.Railway
 {
     public interface IRailwayService : ICarriageInfoService, ISearchTrainService, ISearchHintsService, ITrainInfoService { }
 

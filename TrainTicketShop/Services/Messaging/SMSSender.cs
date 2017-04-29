@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +24,6 @@ namespace TrainTicketShop.Services.Messaging
                     sb.Append(ticket.Hash);
                     sb.Append(" \n");
                 }
-
                 var result = _httpClient.GetAsync($"https://api.mobizon.com/service/message/sendsmsmessage?apiKey={_apiKey}&recipient={order.MobilePhone}&text={sb.ToString()}&from=Poezzhayka".Replace(' ','+')).Result;
                 Successor?.SendTicketLinks(order);
                 return result.Content.ReadAsStringAsync();
