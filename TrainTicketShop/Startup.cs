@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Net.Http;
 using TrainTicketShop.Services;
 using StackExchange.Redis;
+using TrainTicketShop.Services.Messaging;
 using TrainTicketShop.Services.SessionId;
 using TrainTicketShop.Services.Railway;
 

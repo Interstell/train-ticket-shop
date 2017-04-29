@@ -9,6 +9,6 @@ namespace TrainTicketShop.Services.Messaging
     public interface IMessageSender {
         IMessageSender Successor { get; set; }
 
-        void SendTicketLink(Ticket ticket);
+        Task SendTicketLinks(TicketOrder order);
     }
 }

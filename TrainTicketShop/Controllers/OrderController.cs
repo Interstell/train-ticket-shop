@@ -3,7 +3,9 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using TrainTicketShop.Entities;
 using TrainTicketShop.Services;
 using TrainTicketShop.Services.Messaging;
@@ -35,7 +37,8 @@ namespace TrainTicketShop.Controllers {
             TicketOrder order = new TicketOrder(_orderCacheService, _ticketData) {
                 Tickets = tickets,
                 Email = model.Email,
-                CreationDate = DateTime.Now
+                CreationDate = DateTime.Now,
+                MobilePhone = model.MobilePhone
             };
 
             order.SetHashCode();
@@ -51,10 +54,16 @@ namespace TrainTicketShop.Controllers {
         
 
         [HttpPost]
-        public IActionResult Confirm(string hash) {
+        public IActionResult Confirm(string hash, [FromServices] IConfiguration config, [FromServices] HttpClient client) {
             TicketOrder order = _orderCacheService.Get(hash);
             order.OrderCacheService = _orderCacheService;
             order.TicketData = _ticketData;
+
+            // #PATTERN CHAIN OF RESPONSIBILITY
+            IMessageSender mailSender = new EmailSender(config["SendGrid"]);
+            IMessageSender smsSender = new SMSSender(config["Mobizon"], client);
+            smsSender.Successor = mailSender;
+            smsSender.SendTicketLinks(order);
 
             order.ConfirmPayment();
             return RedirectToAction("Success", new { hash = hash });
@@ -81,13 +90,6 @@ namespace TrainTicketShop.Controllers {
             builder.FillTrainInfo();
             builder.CreateHashCode();
         }
-
-        public IActionResult Email() {
-            EmailSender sender = new EmailSender();
-            sender.Test().Wait();
-            return Content("ok");
-        }
-
         
     }
 

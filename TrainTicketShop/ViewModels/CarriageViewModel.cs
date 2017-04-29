@@ -30,7 +30,9 @@ namespace TrainTicketShop.ViewModels
 
     public class CarriageViewModel
     {
+        [Required]
         public string Email { get; set; }
+        public string MobilePhone { get; set; }
 
         public Carriage Carriage { get; set; }
         public string CarriageSerialized { get; set; }

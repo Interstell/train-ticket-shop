@@ -21,6 +21,7 @@ namespace TrainTicketShop.Entities {
 
         public List<Ticket> Tickets { get; set; }
         public string Email { get; set; }
+        public string MobilePhone { get; set; }
         public DateTime CreationDate { get; set; }
         public string HashCode { get; set; }
 
