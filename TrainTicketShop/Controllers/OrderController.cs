@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TrainTicketShop.Entities;
 using TrainTicketShop.Services;
+using TrainTicketShop.Services.Messaging;
 using TrainTicketShop.Services.Tickets;
 using TrainTicketShop.ViewModels;
 
@@ -79,6 +80,12 @@ namespace TrainTicketShop.Controllers {
             builder.FillPassengerInfo();
             builder.FillTrainInfo();
             builder.CreateHashCode();
+        }
+
+        public IActionResult Email() {
+            EmailSender sender = new EmailSender();
+            sender.Test().Wait();
+            return Content("ok");
         }
 
         
