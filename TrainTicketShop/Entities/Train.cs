@@ -21,21 +21,7 @@ namespace TrainTicketShop.Entities {
         }
     }
 
-    public class TrainSuperBriefly {
-        public string Number { get; set; }
-        public int TravelTime { get; set; }
-        public bool IsAbroad { get; set; }
-        public string PassengerDepartureDate { get; set; }
-        public string PassengerArrivalDate { get; set; }
-        public Description Class_ { get; set; }
-        public Description Category { get; set; }
-        public Description Speed { get; set; }
-        public Description Model { get; set; }
-        public Description DepartureStation { get; set; }
-        public Description ArrivalStation { get; set; }
-        public Description PassengerDepartureStation { get; set; }
-        public Description PassengerArrivalStation { get; set; }
-    }
+    
 
     public class Train {
         public List<CarBriefly> Cars;
@@ -122,5 +108,21 @@ namespace TrainTicketShop.Entities {
                 Name = result.train.passengerArrivalStation.name,
             };
         }
+    }
+
+    public class TrainSuperBriefly {
+        public string Number { get; set; }
+        public int TravelTime { get; set; }
+        public bool IsAbroad { get; set; }
+        public string PassengerDepartureDate { get; set; }
+        public string PassengerArrivalDate { get; set; }
+        public Description Class_ { get; set; }
+        public Description Category { get; set; }
+        public Description Speed { get; set; }
+        public Description Model { get; set; }
+        public Description DepartureStation { get; set; }
+        public Description ArrivalStation { get; set; }
+        public Description PassengerDepartureStation { get; set; }
+        public Description PassengerArrivalStation { get; set; }
     }
 }

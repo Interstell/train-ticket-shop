@@ -66,14 +66,14 @@
                                 <tr>
                                     <td class="nowrap w1" colspan="2">Відправлення</td>
                                     <td class="w1">@Model.TrainDepartureStationId.ToString().PadLeft(7,'0')</td>
-                                    <td class="upper ticket_info" colspan="2">@Model.TrainDepartureStation</td>
+                                    <td class="upper ticket_info" colspan="2">@Model.TrainPassengerDepartureStation</td>
                                     <td>Вагон</td>
                                     <td class="align-right ticket_info">@Model.CarriageNumber</td>
                                 </tr>
                                 <tr>
                                     <td class="nowrap" colspan="2">Призначення</td>
                                     <td>@Model.TrainArrivalStationId.ToString().PadLeft(7, '0')</td>
-                                    <td class="upper ticket_info" colspan="2">@Model.TrainArrivalStation</td>
+                                    <td class="upper ticket_info" colspan="2">@Model.TrainPassengerArrivalStation</td>
                                     <td>Місце</td>
                                     @{var ticketType = ((int)(Model.PassengerType) > 0) ? "Пільговий" : ""; }
                                     <td class="align-right ticket_info">@Model.SeatNumber @ticketType</td>

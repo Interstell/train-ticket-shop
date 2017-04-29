@@ -31,10 +31,11 @@ namespace TrainTicketShop.Controllers {
                 ConstructTicket(builder);
                 tickets.Add(builder.Ticket);
             }
-            TicketOrder order = new TicketOrder(_orderCacheService, _ticketData);
-            order.Tickets = tickets;
-            order.Email = model.Email;
-            order.CreationDate = DateTime.Now;
+            TicketOrder order = new TicketOrder(_orderCacheService, _ticketData) {
+                Tickets = tickets,
+                Email = model.Email,
+                CreationDate = DateTime.Now
+            };
 
             order.SetHashCode();
             order.Book();

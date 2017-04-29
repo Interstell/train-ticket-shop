@@ -31,7 +31,7 @@ namespace TrainTicketShop.Services.Tickets
         public TicketBuilder(TicketViewModel ticketVM, Carriage carriage, string email ) {
             _ticketVM = ticketVM;
             _carriage = carriage;
-            Ticket = new Ticket() { Email = email };
+            Ticket = new Ticket { Email = email };
         }
 
         public void ChooseStrategy() {
@@ -80,15 +80,15 @@ namespace TrainTicketShop.Services.Tickets
 
         public void CreateHashCode() {
             using (MD5 md5Hash = MD5.Create()) {
-                byte[] hash = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(
+                var hash = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(
                         Ticket.TrainNumber + Ticket.TrainDepartureStation + Ticket.TrainArrivalStation
                         + Ticket.TrainPassengerDepartureDate + Ticket.TrainPassengerArrivalDate
                         + Ticket.CarriageNumber + Ticket.SeatNumber + Ticket.Surname + Ticket.Name 
                         + ((DateTimeOffset)DateTime.Now).ToUnixTimeMilliseconds().ToString()
                     ));
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < hash.Length; i++) {
-                    sb.Append(hash[i].ToString("X2"));
+                var sb = new StringBuilder();
+                foreach (byte b in hash) {
+                    sb.Append(b.ToString("X2"));
                 }
                 Ticket.Hash = sb.ToString();
             }
