@@ -15,7 +15,7 @@ namespace TrainTicketShop.Services.Messaging {
         }
 
         public async Task Test() {
-            var apiKey = "hardcode";
+            var apiKey = "hardcoded string";
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("watchman.kpi@yandex.ru", "Example User");
             var subject = "Sending with SendGrid is Fun";
